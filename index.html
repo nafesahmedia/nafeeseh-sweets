@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حلويات نفيسة | Nafeeseh Sweets — الطعم الشامي الأصيل</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { background-color: #FAF6ED; color: #442824; font-family: 'Noto Kufi Arabic', sans-serif; }
+    body { background-color: #FAF6ED; color: #442824; font-family: 'Noto Kufi Arabic', sans-serif; scroll-behavior: smooth; }
     .gold-gradient { background: linear-gradient(135deg, #A08048 0%, #D4AF37 50%, #8C6734 100%); }
     .card-hover { transition: all 0.25s ease; }
     .card-hover:hover { transform: translateY(-4px); box-shadow: 0 14px 30px -10px rgba(68, 40, 36, 0.16); }
+    .menu-card { background: #FFFFFF; border: 1px solid rgba(160, 128, 72, 0.25); border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(68, 40, 36, 0.05); }
+    .shiny-gold-btn {
+      background: linear-gradient(135deg, #A08048 0%, #D4AF37 100%);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+    }
+    .shiny-gold-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.7); }
   </style>
 </head>
 <body class="selection:bg-[#A08048] selection:text-white">
@@ -22,32 +28,37 @@
         ✨ <span>Original Oriental Taste — الطعم الشامي الأصيل</span> | توصيل مبرد لكافة مناطق الأردن
       </p>
       <div class="flex items-center gap-4">
-        <button onclick="alert('هدايا الشركات')" class="hover:text-[#E1B57B] underline">هدايا الشركات وكبار الشخصيات</button>
+        <button onclick="alert('هدايا الشركات وكبار الشخصيات متاحة للطلب')" class="hover:text-[#E1B57B] underline">هدايا الشركات وكبار الشخصيات</button>
       </div>
     </div>
   </div>
 
-  <!-- الهيدر الرئيسي مع الشعار الصحيح Logo Nafeeseh.png -->
-  <header class="sticky top-0 z-40 bg-[#FAF6ED]/95 backdrop-blur-md border-b border-[#A08048]/20 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <!-- الهيدر الرئيسي مع الشعار -->
+  <header class="sticky top-0 z-50 bg-[#FAF6ED]/95 backdrop-blur-md border-b border-[#A08048]/20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
-      <!-- زر سلة المشتريات (يسار الشاشة) -->
+      <!-- أزرار الإجراءات (يسار الشاشة) -->
       <div class="flex items-center gap-3">
         <button onclick="alert('سلة المشتريات فارغة')" class="relative bg-[#5B1408] hover:bg-[#442824] text-[#FAF6ED] px-4 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 shadow transition">
           <span>🛍️</span>
           <span>سلة المشتريات (0)</span>
         </button>
+        <a href="https://wa.me/962776999555" target="_blank" class="shiny-gold-btn text-white px-4 py-2.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow">
+          <span>💬</span>
+          <span>واتساب</span>
+        </a>
       </div>
 
-      <!-- روابط القائمة -->
-      <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-[#442824]">
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">اتصل بنا</a>
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">الجودة</a>
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">فروعنا</a>
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">تراثنا</a>
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">هدايا الشركات</a>
-        <a href="#" class="hover:text-[#5B1408] pb-1 transition">المتجر</a>
-        <a href="#" class="text-[#5B1408] border-b-2 border-[#5B1408] pb-1 font-bold">الرئيسية</a>
+      <!-- روابط القائمة التفاعلية (قابلة للنقر وتعمل بدقة) -->
+      <nav class="hidden lg:flex items-center gap-4 text-sm font-semibold text-[#442824] overflow-x-auto whitespace-nowrap">
+        <a href="#hot-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات ساخنة</a>
+        <a href="#arabic-nuts" class="hover:text-[#5B1408] pb-1 transition">عربية بالمكسرات</a>
+        <a href="#western-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات غربية</a>
+        <a href="#arabic-cheese" class="hover:text-[#5B1408] pb-1 transition">عربية بالجبنة</a>
+        <a href="#lite-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات لايت</a>
+        <a href="#catering" class="hover:text-[#5B1408] pb-1 transition">المطبخ الشامي</a>
+        <a href="#nawashif" class="hover:text-[#5B1408] pb-1 transition">نواشف</a>
+        <a href="#cream-sweets" class="hover:text-[#5B1408] pb-1 transition">عربية بالقشطة</a>
       </nav>
 
       <!-- الشعار في أقصى اليمين -->
@@ -57,7 +68,7 @@
     </div>
   </header>
 
-  <!-- الصفحة الرئيسية (الهيرو) مع الترتيب الجديد -->
+  <!-- الصفحة الرئيسية (الهيرو) -->
   <section class="relative overflow-hidden bg-gradient-to-br from-[#5B1408] via-[#442824] to-[#2A1512] text-[#FAF6ED] py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
       
@@ -69,17 +80,16 @@
         <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight">
           حلويات نفيسة: العلامة التي تزيّن كل بيت وعنوان الضيافة الأصيلة
         </h1>
-        <!-- النص الإستراتيجي الجديد المعتمد -->
-        <p class="text-cream/90 text-sm sm:text-base leading-relaxed">
+        <p class="text-gray-200 text-sm sm:text-base leading-relaxed">
           Honouring our heritage through a fresh luxury appeal, driven by generational Levantine mastery, and backed by uncompromising ISO food safety standards.
         </p>
         <div class="flex flex-wrap gap-4 pt-2 justify-end">
-          <button class="bg-white/10 hover:bg-white/20 border border-[#E1B57B]/40 text-[#FAF6ED] font-semibold px-6 py-3 rounded-full transition">
+          <button onclick="alert('هدايا الشركات وكبار الشخصيات')" class="bg-white/10 hover:bg-white/20 border border-[#E1B57B]/40 text-[#FAF6ED] font-semibold px-6 py-3 rounded-full transition">
             هدايا الشركات وعواصم الضيافة
           </button>
-          <button class="gold-gradient text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:opacity-95 transition">
+          <a href="#hot-sweets" class="gold-gradient text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:opacity-95 transition inline-block text-center">
             تسوق تشكيلة الحلويات الفاخرة ←
-          </button>
+          </a>
         </div>
       </div>
 
@@ -100,7 +110,7 @@
               </div>
               <div class="mt-3 pt-2 border-t border-white/10 flex justify-between items-center">
                 <span class="font-bold text-xs">19.50 د.أ</span>
-                <button onclick="alert('تمت الإضافة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
+                <button onclick="alert('تمت الإضافة إلى السلة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
               </div>
             </div>
 
@@ -112,7 +122,7 @@
               </div>
               <div class="mt-3 pt-2 border-t border-white/10 flex justify-between items-center">
                 <span class="font-bold text-xs">11.00 د.أ</span>
-                <button onclick="alert('تمت الإضافة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
+                <button onclick="alert('تمت الإضافة إلى السلة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
               </div>
             </div>
           </div>
@@ -123,10 +133,9 @@
     </div>
   </section>
 
-  <!-- فوتر الموقع -->
-  <footer class="bg-[#442824] text-[#FAF6ED]/80 py-8 text-center text-xs border-t-4 border-[#A08048] mt-16">
-    <p>© 2026 حلويات نفيسة. جميع الحقوق محفوظة.</p>
-  </footer>
+  <!-- القائمة الشاملة للأصناف والأسعار -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
-</body>
-</html>
+    <!-- 1. حلويات ساخنة -->
+    <section id="hot-sweets" class="menu-card">
+      <h2 class="text-2xl font-black text-[#5B1408] mb-6 border-b border-[#A08048]/20 pb-
