@@ -6,171 +6,454 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { background-color: #FAF6ED; color: #442824; font-family: 'Noto Kufi Arabic', sans-serif; scroll-behavior: smooth; }
-    .gold-gradient { background: linear-gradient(135deg, #A08048 0%, #D4AF37 50%, #8C6734 100%); }
-    .card-hover { transition: all 0.25s ease; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 14px 30px -10px rgba(68, 40, 36, 0.16); }
-    .menu-card { background: #FFFFFF; border: 1px solid rgba(160, 128, 72, 0.25); border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(68, 40, 36, 0.05); }
+    body { background-color: #0B0D12; color: #F8FAFC; font-family: 'Noto Kufi Arabic', sans-serif; scroll-behavior: smooth; }
+    .gold-border { border: 1px solid rgba(212, 175, 55, 0.3); }
+    .gold-border:hover { border-color: rgba(212, 175, 55, 0.8); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
     .shiny-gold-btn {
-      background: linear-gradient(135deg, #A08048 0%, #D4AF37 100%);
+      background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
     }
     .shiny-gold-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.7); }
+    .menu-card { background: rgba(19, 23, 34, 0.95); backdrop-filter: blur(12px); border-radius: 20px; padding: 24px; }
+    
+    /* Dropdown Styling */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #131722;
+      min-width: 260px;
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      z-index: 100;
+      border-radius: 12px;
+      right: 0;
+      max-height: 350px;
+      overflow-y: auto;
+    }
+    .dropdown-content a {
+      color: #CBD5E1;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .dropdown-content a:hover { background-color: rgba(212, 175, 55, 0.15); color: #D4AF37; }
+    .dropdown:hover .dropdown-content { display: block; }
   </style>
 </head>
-<body class="selection:bg-[#A08048] selection:text-white">
+<body class="selection:bg-[#D4AF37] selection:text-black">
 
   <!-- شريط الإعلانات العُلوي -->
-  <div class="bg-[#5B1408] text-[#FAF6ED] text-xs py-2.5 px-4 border-b border-[#A08048]/30">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-      <p class="font-medium tracking-wide">
-        ✨ <span>Original Oriental Taste — الطعم الشامي الأصيل</span> | توصيل مبرد لكافة مناطق الأردن
-      </p>
-      <div class="flex items-center gap-4">
-        <button onclick="alert('هدايا الشركات وكبار الشخصيات متاحة للطلب')" class="hover:text-[#E1B57B] underline">هدايا الشركات وكبار الشخصيات</button>
-      </div>
+  <div class="bg-[#080A0F] border-b border-white/10 text-xs py-2 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div>✨ الطعم الشامي الأصيل | توصيل مبرد لكافة مناطق الأردن</div>
+      <a href="tel:+962776999555" class="hover:text-[#D4AF37] transition font-bold" dir="ltr">📞 +962 77 699 9555</a>
     </div>
   </div>
 
-  <!-- الهيدر الرئيسي مع الشعار -->
-  <header class="sticky top-0 z-50 bg-[#FAF6ED]/95 backdrop-blur-md border-b border-[#A08048]/20 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+  <!-- الشريط الرئيسي (Toolbar) المماثل للطلب مع القوائم المنسدلة -->
+  <header class="sticky top-0 z-50 bg-[#0E131F]/95 backdrop-blur-md border-b border-white/10 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
       
-      <!-- أزرار الإجراءات (يسار الشاشة) -->
-      <div class="flex items-center gap-3">
-        <button onclick="alert('سلة المشتريات فارغة')" class="relative bg-[#5B1408] hover:bg-[#442824] text-[#FAF6ED] px-4 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 shadow transition">
-          <span>🛍️</span>
-          <span>سلة المشتريات (0)</span>
-        </button>
-        <a href="https://wa.me/962776999555" target="_blank" class="shiny-gold-btn text-white px-4 py-2.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow">
-          <span>💬</span>
-          <span>واتساب</span>
-        </a>
-      </div>
+      <!-- الشعار -->
+      <a href="#" class="flex items-center gap-2">
+        <span class="font-black text-xl text-[#D4AF37]">✨ حلويات نفيسة والشامي</span>
+      </a>
+      
+      <!-- شريط الأدوات مع القوائم المنسدلة لكل قسم -->
+      <nav class="hidden lg:flex items-center gap-5 text-sm font-bold text-gray-300">
+        
+        <!-- قسم حلويات ساخنة -->
+        <div class="dropdown">
+          <a href="#hot-sweets" class="hover:text-[#D4AF37] transition py-3 block">حلويات ساخنة ▾</a>
+          <div class="dropdown-content">
+            <a href="#hot-sweets"><span>بين نارين</span><span class="text-[#D4AF37]">2.00 - 7.00 د.أ</span></a>
+            <a href="#hot-sweets"><span>كنافة خشنة/ناعمة</span><span class="text-[#D4AF37]">1.00 - 7.00 د.أ</span></a>
+            <a href="#hot-sweets"><span>كنافة سبشل</span><span class="text-[#D4AF37]">8.50 د.أ</span></a>
+            <a href="#hot-sweets"><span>كنافة دايت</span><span class="text-[#D4AF37]">10.00 د.أ</span></a>
+            <a href="#hot-sweets"><span>كلاج جوز</span><span class="text-[#D4AF37]">7.50 د.أ</span></a>
+          </div>
+        </div>
 
-      <!-- روابط القائمة التفاعلية في شريط الأدوات (تقوم بالانتقال المباشر لأقسام المتجر والأسعار) -->
-      <nav class="hidden lg:flex items-center gap-4 text-sm font-semibold text-[#442824] overflow-x-auto whitespace-nowrap">
-        <a href="#hot-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات ساخنة</a>
-        <a href="#arabic-nuts" class="hover:text-[#5B1408] pb-1 transition">عربية بالمكسرات</a>
-        <a href="#western-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات غربية</a>
-        <a href="#arabic-cheese" class="hover:text-[#5B1408] pb-1 transition">عربية بالجبنة</a>
-        <a href="#lite-sweets" class="hover:text-[#5B1408] pb-1 transition">حلويات لايت</a>
-        <a href="#catering" class="hover:text-[#5B1408] pb-1 transition">المطبخ الشامي</a>
-        <a href="#nawashif" class="hover:text-[#5B1408] pb-1 transition">نواشف</a>
-        <a href="#cream-sweets" class="hover:text-[#5B1408] pb-1 transition">عربية بالقشطة</a>
+        <!-- قسم عربية بالمكسرات -->
+        <div class="dropdown">
+          <a href="#arabic-nuts" class="hover:text-[#D4AF37] transition py-3 block">عربية بالمكسرات ▾</a>
+          <div class="dropdown-content">
+            <a href="#arabic-nuts"><span>فستقية</span><span class="text-[#D4AF37]">20.00 د.أ</span></a>
+            <a href="#arabic-nuts"><span>بصمة فستق</span><span class="text-[#D4AF37]">17.00 د.أ</span></a>
+            <a href="#arabic-nuts"><span>مشكل رويال</span><span class="text-[#D4AF37]">29.00 د.أ</span></a>
+            <a href="#arabic-nuts"><span>بلورية فستق</span><span class="text-[#D4AF37]">27.00 د.أ</span></a>
+            <a href="#arabic-nuts"><span>مبرومة فستق</span><span class="text-[#D4AF37]">30.00 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم حلويات غربية -->
+        <div class="dropdown">
+          <a href="#western-sweets" class="hover:text-[#D4AF37] transition py-3 block">حلويات غربية ▾</a>
+          <div class="dropdown-content">
+            <a href="#western-sweets"><span>تارت</span><span class="text-[#D4AF37]">15.00 د.أ</span></a>
+            <a href="#western-sweets"><span>سان سيباستيان</span><span class="text-[#D4AF37]">2.25 د.أ</span></a>
+            <a href="#western-sweets"><span>شوكولا دبي</span><span class="text-[#D4AF37]">2.50 د.أ</span></a>
+            <a href="#western-sweets"><span>كنافة نوتيلا/لوتس</span><span class="text-[#D4AF37]">15.00 د.أ</span></a>
+            <a href="#western-sweets"><span>بيتيفور فاخر</span><span class="text-[#D4AF37]">10.00 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم عربية بالجبنة -->
+        <div class="dropdown">
+          <a href="#arabic-cheese" class="hover:text-[#D4AF37] transition py-3 block">عربية بالجبنة ▾</a>
+          <div class="dropdown-content">
+            <a href="#arabic-cheese"><span>كنافة مفروكة</span><span class="text-[#D4AF37]">8.00 د.أ</span></a>
+            <a href="#arabic-cheese"><span>حلاوة الجبن</span><span class="text-[#D4AF37]">10.00 د.أ</span></a>
+            <a href="#arabic-cheese"><span>مبرومة جبنة</span><span class="text-[#D4AF37]">6.50 د.أ</span></a>
+            <a href="#arabic-cheese"><span>كلاج جبنة</span><span class="text-[#D4AF37]">7.50 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم لايت -->
+        <div class="dropdown">
+          <a href="#lite-sweets" class="hover:text-[#D4AF37] transition py-3 block">حلويات لايت ▾</a>
+          <div class="dropdown-content">
+            <a href="#lite-sweets"><span>مشكل عربي لايت</span><span class="text-[#D4AF37]">25.00 د.أ</span></a>
+            <a href="#lite-sweets"><span>معمول فستق لايت</span><span class="text-[#D4AF37]">9.00 د.أ</span></a>
+            <a href="#lite-sweets"><span>بقلاوة كاجو لايت</span><span class="text-[#D4AF37]">9.00 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم المطبخ الشامي -->
+        <div class="dropdown">
+          <a href="#catering" class="hover:text-[#D4AF37] transition py-3 block">المطبخ الشامي ▾</a>
+          <div class="dropdown-content">
+            <a href="#catering"><span>منسف لحم بلدي</span><span class="text-[#D4AF37]">25.00 د.أ</span></a>
+            <a href="#catering"><span>فريكة باللحم</span><span class="text-[#D4AF37]">35.00 د.أ</span></a>
+            <a href="#catering"><span>كبة مشوية</span><span class="text-[#D4AF37]">0.95 د.أ</span></a>
+            <a href="#catering"><span>ليالي الشام</span><span class="text-[#D4AF37]">9.00 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم نواشف -->
+        <div class="dropdown">
+          <a href="#nawashif" class="hover:text-[#D4AF37] transition py-3 block">نواشف ▾</a>
+          <div class="dropdown-content">
+            <a href="#nawashif"><span>برازق وغريبة</span><span class="text-[#D4AF37]">11.00 د.أ</span></a>
+            <a href="#nawashif"><span>معمول فستق</span><span class="text-[#D4AF37]">18.00 د.أ</span></a>
+            <a href="#nawashif"><span>من وسلوى</span><span class="text-[#D4AF37]">22.00 د.أ</span></a>
+          </div>
+        </div>
+
+        <!-- قسم بالقشطة -->
+        <div class="dropdown">
+          <a href="#cream-sweets" class="hover:text-[#D4AF37] transition py-3 block">بالقشطة ▾</a>
+          <div class="dropdown-content">
+            <a href="#cream-sweets"><span>مدلوقة سبشل</span><span class="text-[#D4AF37]">12.00 د.أ</span></a>
+            <a href="#cream-sweets"><span>قشطة بلدية</span><span class="text-[#D4AF37]">18.00 د.أ</span></a>
+            <a href="#cream-sweets"><span>عصمية نوتيلا</span><span class="text-[#D4AF37]">12.00 د.أ</span></a>
+          </div>
+        </div>
+
       </nav>
 
-      <!-- الشعار في أقصى اليمين -->
-      <a href="#" class="flex items-center">
-        <img src="Logo Nafeeseh.png" alt="Nafeeseh Sweets Logo" class="h-14 w-auto object-contain" />
-      </a>
+      <div>
+        <a href="https://wa.me/962776999555" target="_blank" class="shiny-gold-btn text-black font-extrabold px-5 py-2.5 rounded-full text-xs whitespace-nowrap">
+          طلب عبر واتساب
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- الصفحة الرئيسية (الهيرو) -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-[#5B1408] via-[#442824] to-[#2A1512] text-[#FAF6ED] py-16 lg:py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
-      
-      <!-- النصوص والتعريف الإستراتيجي في اليمين -->
-      <div class="lg:col-span-7 space-y-6 text-right">
-        <div class="inline-flex items-center gap-2 bg-[#A08048]/20 border border-[#A08048]/40 text-[#E1B57B] px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-semibold">
-          <span>Original Oriental Taste</span> • <span>Authentic Levantine Hospitality</span>
-        </div>
-        <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight">
-          حلويات نفيسة: العلامة التي تزيّن كل بيت وعنوان الضيافة الأصيلة
-        </h1>
-        <p class="text-gray-200 text-sm sm:text-base leading-relaxed">
-          Honouring our heritage through a fresh luxury appeal, driven by generational Levantine mastery, and backed by uncompromising ISO food safety standards.
-        </p>
-        <div class="flex flex-wrap gap-4 pt-2 justify-end">
-          <button onclick="alert('هدايا الشركات وكبار الشخصيات')" class="bg-white/10 hover:bg-white/20 border border-[#E1B57B]/40 text-[#FAF6ED] font-semibold px-6 py-3 rounded-full transition">
-            هدايا الشركات وعواصم الضيافة
-          </button>
-          <a href="#hot-sweets" class="gold-gradient text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:opacity-95 transition inline-block text-center">
-            تسوق تشكيلة الحلويات الفاخرة ←
-          </a>
-        </div>
-      </div>
-
-      <!-- البطاقات المعروضة أفقياً في اليسار -->
-      <div class="lg:col-span-5">
-        <div class="bg-white/10 backdrop-blur-md border border-[#A08048]/40 rounded-3xl p-6 shadow-2xl space-y-5">
-          <div class="flex justify-between items-center">
-            <span class="bg-[#A08048] text-white text-xs px-3 py-1 rounded-full font-semibold">الأكثر طلباً</span>
-            <span class="text-xs uppercase tracking-widest text-[#E1B57B] font-bold">أبرز منتجات التراث والشرف</span>
-          </div>
-          
-          <div class="grid grid-cols-2 gap-4 text-right">
-            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 flex flex-col justify-between card-hover">
-              <div>
-                <div class="text-2xl mb-1">🥮</div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#E1B57B]">علبة الفسيفساء الملكية</h3>
-                <p class="text-[11px] text-white/80 mt-1">60% برازق وغريبة + 40% بقلاوة.</p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex justify-between items-center">
-                <span class="font-bold text-xs">19.50 د.أ</span>
-                <button onclick="alert('تمت الإضافة إلى السلة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
-              </div>
-            </div>
-
-            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 flex flex-col justify-between card-hover">
-              <div>
-                <div class="text-2xl mb-1">🧀</div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#E1B57B]">كنافة ناعمة ساخنة</h3>
-                <p class="text-[11px] text-white/80 mt-1">جبنة نابلسية وسمن بلدي.</p>
-              </div>
-              <div class="mt-3 pt-2 border-t border-white/10 flex justify-between items-center">
-                <span class="font-bold text-xs">11.00 د.أ</span>
-                <button onclick="alert('تمت الإضافة إلى السلة')" class="text-[10px] bg-[#A08048] px-2.5 py-1 rounded-full text-white">+ إضافة</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+  <!-- الهيرو الرئيسي -->
+  <section class="py-16 text-center px-4 bg-gradient-to-b from-[#131722] to-[#0B0D12]">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <h1 class="text-4xl sm:text-6xl font-black text-white">قائمة الأسعار والأصناف الفاخرة</h1>
+      <p class="text-gray-400 text-lg">اختر ما تشتهي من تشكيلة حلويات نفيسة والشامي الأصيلة.</p>
     </div>
   </section>
 
-  <!-- القائمة الشاملة والأقسام المحدثة بجميع الأسعار -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <!-- محتوى المتجر والأقسام والأسعار المفصلة -->
+  <main class="max-w-7xl mx-auto px-4 py-12 space-y-16">
 
     <!-- 1. حلويات ساخنة -->
-    <section id="hot-sweets" class="menu-card">
-      <h2 class="text-2xl font-black text-[#5B1408] mb-6 border-b border-[#A08048]/20 pb-3">🔥 حلويات ساخنة (Hot Sweets Dishes)</h2>
+    <section id="hot-sweets" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🔥 حلويات ساخنة (Hot Sweets Dishes)</h2>
       <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>بين نارين</span><span class="text-[#A08048] font-bold">2.00 / 3.50 / 7.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>بين نارين تركي</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة خشنة</span><span class="text-[#A08048] font-bold">1.00 / 2.00 / 3.50 / 7.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة خشنة اكسترا</span><span class="text-[#A08048] font-bold">7.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة خشنة سبیشل</span><span class="text-[#A08048] font-bold">8.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة ناعمة</span><span class="text-[#A08048] font-bold">1.00 / 2.00 / 3.50 / 7.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة ناعمة اكسترا</span><span class="text-[#A08048] font-bold">7.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة ناعمة سبیشل</span><span class="text-[#A08048] font-bold">8.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة مبيكس</span><span class="text-[#A08048] font-bold">7.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة مبيكس اكسترا</span><span class="text-[#A08048] font-bold">7.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة مبيكس سبیشل</span><span class="text-[#A08048] font-bold">8.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة دايت خشنة</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كنافة دايت ناعمة</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>عجينة كنافة (ناعمة وخشنة)</span><span class="text-[#A08048] font-bold">2.75 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>كلاج جوز</span><span class="text-[#A08048] font-bold">7.50 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>بين نارين فستق حلبي</span><span class="text-[#A08048] font-bold">17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بين نارين</span><span class="text-[#D4AF37] font-bold">2.00 / 3.50 / 7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بين نارين تركي</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة خشنة</span><span class="text-[#D4AF37] font-bold">1.00 / 2.00 / 3.50 / 7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة خشنة اكسترا</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة خشنة سبیشل</span><span class="text-[#D4AF37] font-bold">8.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة ناعمة</span><span class="text-[#D4AF37] font-bold">1.00 / 2.00 / 3.50 / 7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة ناعمة اكسترا</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة ناعمة سبیشل</span><span class="text-[#D4AF37] font-bold">8.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة مبيكس</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة مبيكس اكسترا</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة مبيكس سبیشل</span><span class="text-[#D4AF37] font-bold">8.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة دايت خشنة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة دايت ناعمة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عجينة كنافة (ناعمة وخشنة)</span><span class="text-[#D4AF37] font-bold">2.75 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كلاج جوز</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بين نارين فستق حلبي</span><span class="text-[#D4AF37] font-bold">17.00 د.أ</span></div>
       </div>
     </section>
 
     <!-- 2. حلويات عربية بالمكسرات -->
-    <section id="arabic-nuts" class="menu-card">
-      <h2 class="text-2xl font-black text-[#5B1408] mb-6 border-b border-[#A08048]/20 pb-3">🌰 حلويات عربية بالمكسرات (Assorted Baklava)</h2>
+    <section id="arabic-nuts" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🌰 حلويات عربية بالمكسرات (Assorted Baklava)</h2>
       <div class="grid md:grid-cols-2 gap-4 text-sm">
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>فستقية</span><span class="text-[#A08048] font-bold">20.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>حمبري جوز</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>شعبيات جوز</span><span class="text-[#A08048] font-bold">7.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>بصمة جوز</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>بصمة فستق</span><span class="text-[#A08048] font-bold">17.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>يونانية بللور</span><span class="text-[#A08048] font-bold">17.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>يونانية جوز</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>يونانية وردات دانتیل</span><span class="text-[#A08048] font-bold">15.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>وربات فستق</span><span class="text-[#A08048] font-bold">17.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>وربات جوز</span><span class="text-[#A08048] font-bold">10.00 د.أ</span></div>
-        <div class="flex justify-between items-center py-2.5 border-b border-gray-100"><span>يونانية فستق</span><span class="text-[#A08048] font-bold">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فستقية</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>حمبري جوز</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شعبيات جوز</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بصمة جوز</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بصمة فستق</span><span class="text-[#D4AF37] font-bold">17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>يونانية بللور</span><span class="text-[#D4AF37] font-bold">17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>يونانية جوز</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>يونانية وردات دانتیل</span><span class="text-[#D4AF37] font-bold">15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات فستق</span><span class="text-[#D4AF37] font-bold">17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات جوز</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>يونانية فستق</span><span class="text-[#D4AF37] font-bold">17.00 / 8.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>يونانية فستق قطعة</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>غريبة بالفستق</span><span class="text-[#D4AF37] font-bold">1.50 / 24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة خضراء - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة شعايف - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة شوكولا - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة صدفة - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة عقدة - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة قلوب - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة مثلثات - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اسوية تركية فستق - 100 غرام</span><span class="text-[#D4AF37] font-bold">17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة تركية جوز - 100 غرام</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>غريبة بالفستق الحلبي - قطعة</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شاميات</span><span class="text-[#D4AF37] font-bold">9.00 / 18.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي - 800 غرام</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي - 400 غرام</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي رويال - 1000 غرام</span><span class="text-[#D4AF37] font-bold">25.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي رويال - 500 غرام</span><span class="text-[#D4AF37] font-bold">13.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي رويال معدن</span><span class="text-[#D4AF37] font-bold">29.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شكربر</span><span class="text-[#D4AF37] font-bold">4.50 / 9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة تركية</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اسوية تركية فستق</span><span class="text-[#D4AF37] font-bold">24.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اسوية تركية جوز</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل فستق - قطعة</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>هريسة باللوز</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>هريسة بالمكسرات</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>هريسة شامية بالفستق الحلبي</span><span class="text-[#D4AF37] font-bold">8.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بلورية بيضاء فستق</span><span class="text-[#D4AF37] font-bold">13.50 / 27.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بلورية حمراء فستق</span><span class="text-[#D4AF37] font-bold">13.50 / 27.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بلورية حمراء كاجو</span><span class="text-[#D4AF37] font-bold">8.50 / 17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل فستق</span><span class="text-[#D4AF37] font-bold">11.00 / 22.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل كاجو</span><span class="text-[#D4AF37] font-bold">8.50 / 17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل صنوبر</span><span class="text-[#D4AF37] font-bold">27.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قول وشكور فستق</span><span class="text-[#D4AF37] font-bold">13.50 / 27.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>أصابع كاجو</span><span class="text-[#D4AF37] font-bold">8.50 / 17.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مبرومة فستق</span><span class="text-[#D4AF37] font-bold">15.00 / 30.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اسوية فستق</span><span class="text-[#D4AF37] font-bold">13.50 / 27.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اسوية كاجو</span><span class="text-[#D4AF37] font-bold">8.50 / 17.00 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 3. حلويات غربية -->
+    <section id="western-sweets" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🍰 حلويات غربية (Western Sweets)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كيكة تركية</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تارت</span><span class="text-[#D4AF37] font-bold">15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ليزي كيك</span><span class="text-[#D4AF37] font-bold">1.00 / 4.50 / 9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كلير</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بالوطة</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>توتية</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>دانيت</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>دوناتها</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شوكليت موس</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل نوتيلا</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش السرايا</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فخاره</span><span class="text-[#D4AF37] font-bold">2.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>سان سيباستيان قطعة</span><span class="text-[#D4AF37] font-bold">2.25 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شوكولت بولز</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كيكة دي</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كاسة خشخش</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شوكولا دبي</span><span class="text-[#D4AF37] font-bold">2.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة تشيز كيك</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بيتيفور سادة 800 غرام</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بيتيفور بالمكسرات 800 غرام</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بيتيفور مالح 580 غرام</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة ملوكية</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شوكولا</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>جيلي</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كريم كراميل</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة نوتيلا</span><span class="text-[#D4AF37] font-bold">5.00 / 10.00 / 15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة باللوتس</span><span class="text-[#D4AF37] font-bold">5.00 / 10.00 / 15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة أوريو</span><span class="text-[#D4AF37] font-bold">5.00 / 10.00 / 15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ترايفل منجا</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ترايفل رمان</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ترايفل فراولة</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>جاط ترايفل صغير</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>جاط ترايفل كبير</span><span class="text-[#D4AF37] font-bold">15.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>صحن أوردغان</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 4. حلويات عربية بالجبنة -->
+    <section id="arabic-cheese" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🧀 حلويات عربية بالجبنة (Arabian Sweets with Cheese)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة مفروكة خشبة</span><span class="text-[#D4AF37] font-bold">8.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة مفروكة ناعمة</span><span class="text-[#D4AF37] font-bold">8.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مبرومة جبنة</span><span class="text-[#D4AF37] font-bold">1.65 / 3.25 / 6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات جبنة</span><span class="text-[#D4AF37] font-bold">1.65 / 3.25 / 6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كلاج جبنة</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>نمورة جبنة</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عجينة حلاوة الجبن</span><span class="text-[#D4AF37] font-bold">4.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>حلاوة الجبن</span><span class="text-[#D4AF37] font-bold">5.00 / 10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات جبنة مع فستق حلبي</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مبرومة جبنة مع فستق</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 5. حلويات لايت -->
+    <section id="lite-sweets" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🍃 حلويات لايت (Lite Sweets)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي لايت - 900 غرام</span><span class="text-[#D4AF37] font-bold">25.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل عربي لايت - 450 غرام</span><span class="text-[#D4AF37] font-bold">12.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل معمول لايت - 750 غرام</span><span class="text-[#D4AF37] font-bold">14.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول تمر لايت - 500 غرام</span><span class="text-[#D4AF37] font-bold">6.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول جوز لايت - 500 غرام</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول فستق لايت - 500 غرام</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة كاجو لايت - 300 غرام</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بقلاوة جوز لايت - 300 غرام</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بيتيفور مالح لايت - 350 غرام</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كوكيز لايت - 500 غرام</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كرات التمر</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تارت لايت</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كنافة ناعمة لايت مفرزة</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>خبزة لايت</span><span class="text-[#D4AF37] font-bold">2.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>شوكولايت</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بلورية (فستق حلبي - كاجو) - 300 غرام</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>أصابع كاجو لايت - 250 غرام</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اصابع خشنة بالمكسرات لايت - 250 غرام</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 6. المطبخ الشامي والضيافة -->
+    <section id="catering" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🍲 المطبخ الشامي والضيافة (Catering)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>أرز باللحم للمستورد</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>منسف لحم بلدي - حبة</span><span class="text-[#D4AF37] font-bold">3.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>دري جبنة - حبة</span><span class="text-[#D4AF37] font-bold">0.40 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>درك لحمة - حبة</span><span class="text-[#D4AF37] font-bold">0.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عراك بالصينية - علبة</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مرق باصبعو - صحن</span><span class="text-[#D4AF37] font-bold">3.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فريكة باللحم البلدي</span><span class="text-[#D4AF37] font-bold">25.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فريكة باللحم المستورد</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كبة مقلية - حبة</span><span class="text-[#D4AF37] font-bold">3.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كبة مشوية - حبة</span><span class="text-[#D4AF37] font-bold">0.95 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كبة مشوية - وسط</span><span class="text-[#D4AF37] font-bold">0.85 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>منسف باللحم البلدي</span><span class="text-[#D4AF37] font-bold">25.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>منسف باللحم المستورد</span><span class="text-[#D4AF37] font-bold">20.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بالتجن - علبة</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فريكة باللحم البلدي بدون عظم</span><span class="text-[#D4AF37] font-bold">35.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مقلوبة باللحم البلدي بدون عظم</span><span class="text-[#D4AF37] font-bold">35.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>لوزي باللحم البلدي بدون عظم</span><span class="text-[#D4AF37] font-bold">35.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قطايف جوز</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قطايف جبنة</span><span class="text-[#D4AF37] font-bold">7.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قطايف صغير صحن</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وردات صحن</span><span class="text-[#D4AF37] font-bold">4.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>نقش صحن</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عوامة</span><span class="text-[#D4AF37] font-bold">3.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>أصابع زينب</span><span class="text-[#D4AF37] font-bold">3.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بلح الشام</span><span class="text-[#D4AF37] font-bold">3.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>حلاوة الجبن بالبوظة - 500 غرام</span><span class="text-[#D4AF37] font-bold">6.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>محلاية صغيرة</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>محلاية كبير</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>محلاية زجاج سبشيال</span><span class="text-[#D4AF37] font-bold">2.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ليالي الشام - 500 غرام</span><span class="text-[#D4AF37] font-bold">4.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>ليالي الشام - 1 كغ</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>رول بوظة عربية 750 غ</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>رول بوظة عربية بالقشطة البلدية 750 غ</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>اكوب ايس كريم</span><span class="text-[#D4AF37] font-bold">1.25 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>سكوب ايس كريم</span><span class="text-[#D4AF37] font-bold">2.00 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 7. نواشف -->
+    <section id="nawashif" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🍪 نواشف (Arabian Cookies)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>برازق - 500 غرام</span><span class="text-[#D4AF37] font-bold">6.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>برازق - 1 كغ</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>غريبة - 500 غرام</span><span class="text-[#D4AF37] font-bold">6.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>غريبة - 1 كغ</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تمر مغطس ابيض</span><span class="text-[#D4AF37] font-bold">16.00 / 8.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تمر مغطس اسود</span><span class="text-[#D4AF37] font-bold">16.00 / 8.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تمر مكسرات - 400 غرام</span><span class="text-[#D4AF37] font-bold">8.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>تمر - 800 غرام</span><span class="text-[#D4AF37] font-bold">16.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل معمول - 700 غرام</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول ملوكي</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول تمر فلسطيني</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مشكل نواشف - 750 غرام</span><span class="text-[#D4AF37] font-bold">13.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول تمر</span><span class="text-[#D4AF37] font-bold">11.00 / 5.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول تمر سميد</span><span class="text-[#D4AF37] font-bold">11.00 / 6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول جوز سميد - 900 غرام</span><span class="text-[#D4AF37] font-bold">13.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول جوز سميد - 450 غرام</span><span class="text-[#D4AF37] font-bold">6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول فستق سميد - 900 غرام</span><span class="text-[#D4AF37] font-bold">13.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول فستق سميد - 450 غرام</span><span class="text-[#D4AF37] font-bold">6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول فستق - 900 غرام</span><span class="text-[#D4AF37] font-bold">18.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول فستق - 450 غرام</span><span class="text-[#D4AF37] font-bold">9.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>معمول يوناني</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>من وسلوى</span><span class="text-[#D4AF37] font-bold">22.00 د.أ</span></div>
+      </div>
+    </section>
+
+    <!-- 8. حلويات عربية بالقشطة -->
+    <section id="cream-sweets" class="menu-card gold-border">
+      <h2 class="text-2xl font-black text-[#D4AF37] mb-6 border-b border-white/10 pb-3">🥛 حلويات عربية بالقشطة (Arabian Sweets with Cream)</h2>
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مدلوقة عادية</span><span class="text-[#D4AF37] font-bold">2.00 / 5.00 / 10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مدلوقة اكسترا</span><span class="text-[#D4AF37] font-bold">11.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مدلوقة سبشل</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عجينة مدلّوقة</span><span class="text-[#D4AF37] font-bold">5.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مفروكة قشطة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مفروكة بوتيلا</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مفروكة لوتس</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>فريسية قشطة</span><span class="text-[#D4AF37] font-bold">7.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عصمية بالقشطة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عصمية سبشل</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عصمية نوتيلا</span><span class="text-[#D4AF37] font-bold">12.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات سوروية</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات قشطة</span><span class="text-[#D4AF37] font-bold">1.50 / 2.75 / 5.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وربات بالقشطة قطعة</span><span class="text-[#D4AF37] font-bold">1.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بين نارين قشطة</span><span class="text-[#D4AF37] font-bold">2.50 / 6.00 / 10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>بصمة قشطة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>وردات قشطة صحن (8 حبات)</span><span class="text-[#D4AF37] font-bold">4.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>عش البلبل قشطة (نوتيلا - قشطة) صحن</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مججوقة قشطة</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>نمورة قشطة</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>نقش صحن</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>راحة قشطة</span><span class="text-[#D4AF37] font-bold">6.00 / 10.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>غريبة قشطة قطعة</span><span class="text-[#D4AF37] font-bold">1.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قطايف عصافيري (نوتيلا - قشطة) صحن</span><span class="text-[#D4AF37] font-bold">9.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قشطة بلدية</span><span class="text-[#D4AF37] font-bold">12.00 / 6.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>قشطة بلدية علبة 1/4 كغ</span><span class="text-[#D4AF37] font-bold">18.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مبرومة قشطة مع فستق حلبي</span><span class="text-[#D4AF37] font-bold">6.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>مبرومة قشطة</span><span class="text-[#D4AF37] font-bold">1.40 / 2.75 / 5.50 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>كلاج تركي</span><span class="text-[#D4AF37] font-bold">8.00 / 4.00 د.أ</span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5"><span>زشود السبت (قشطة - نوتيلا - لوتس - جوزية)</span><span class="text-[#D4AF37] font-bold">10.00 د.أ</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- فوتر الموقع -->
+  <footer class="bg-[#0B0D12] border-t border-white/10 py-12 text-center text-xs text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 space-y-3">
+      <div class="font-bold text-white text-base">حلويات نفيسة والشامي © 2026 جميع الحقوق محفوظة.</div>
+      <div>للطلب المباشر أو الاستفسار تواصل عبر الواتساب على الرقم: <a href="https://wa.me/962776999555" class="text-[#D4AF37] font-bold" dir="ltr">+962 77 699 9555</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
