@@ -18,13 +18,13 @@
     .shiny-gold-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(160, 128, 72, 0.5); }
     .menu-card { background: #FFFFFF; border: 1px solid rgba(160, 128, 72, 0.25); border-radius: 20px; padding: 24px; box-shadow: 0 4px 20px rgba(68, 40, 36, 0.05); }
     
-    /* Dropdown Styles for Shop & Categories */
+    /* Dropdown Styles for Top Toolbar & Shop */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-menu {
       display: none;
       position: absolute;
       background-color: #FAF6ED;
-      min-width: 240px;
+      min-width: 260px;
       box-shadow: 0px 15px 35px rgba(68, 40, 36, 0.15);
       border: 1px solid rgba(160, 128, 72, 0.3);
       z-index: 100;
@@ -49,7 +49,7 @@
     }
     .dropdown-item:hover > .submenu { display: block; }
     
-    .submenu a, .dropdown-item > a {
+    .submenu a, .dropdown-item > a, .dropdown-menu div {
       color: #442824;
       padding: 10px 16px;
       text-decoration: none;
@@ -70,168 +70,4 @@
         return;
       }
       cartCount++;
-      document.getElementById('cart-badge').innerText = `سلة المشتريات (${cartCount})`;
-      alert(`تمت إضافة "${selectedValue}" إلى سلة المشتريات بنجاح! 🛍️`);
-    }
-  </script>
-</head>
-<body class="selection:bg-[#A08048] selection:text-white">
-
-  <!-- شريط الإعلانات العُلوي -->
-  <div class="bg-[#5B1408] text-[#FAF6ED] text-xs py-2.5 px-6 border-b border-[#A08048]/30">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div>✨ Original Oriental Taste — الطعم الشامي الأصيل | توصيل مبرد لكافة مناطق الأردن</div>
-      <a href="tel:+962776999555" class="hover:text-[#D4AF37] transition font-bold" dir="ltr">📞 +962 77 699 9555</a>
-    </div>
-  </div>
-
-  <!-- الشريط الرئيسي (Toolbar) مع زر المتجر وقوائم الفئات -->
-  <header class="sticky top-0 z-50 bg-[#FAF6ED]/95 backdrop-blur-md border-b border-[#A08048]/20 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
-      
-      <!-- زر سلة المشتريات (يسار الشاشة) -->
-      <div class="flex items-center gap-3">
-        <button id="cart-badge" onclick="alert('سلة المشتريات تحتوي على المنتجات المضافة')" class="relative bg-[#5B1408] hover:bg-[#442824] text-[#FAF6ED] px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 shadow transition">
-          <span>🛍️</span>
-          <span>سلة المشتريات (0)</span>
-        </button>
-      </div>
-      
-      <!-- شريط الأدوات الرئيسي وقوائم الفئات والمستودع -->
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-bold text-[#442824]">
-        <a href="#" class="hover:text-[#5B1408] transition py-3">الرئيسية</a>
-        
-        <!-- زر المتجر (Shop) وتحته الفئات (Categories) -->
-        <div class="dropdown">
-          <a href="#" class="text-[#5B1408] transition py-3 flex items-center gap-1 font-extrabold">
-            <span>المتجر (Shop)</span> <span>▾</span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-item"><a href="#hot-sweets"><span>🔥 حلويات ساخنة</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#arabic-nuts"><span>🌰 عربية بالمكسرات</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#western-sweets"><span>🍰 حلويات غربية</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#arabic-cheese"><span>🧀 عربية بالجبنة</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#lite-sweets"><span>🍃 حلويات لايت</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#catering"><span>🍲 المطبخ الشامي</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#nawashif"><span>🍪 نواشف</span><span>◀</span></a></div>
-            <div class="dropdown-item"><a href="#cream-sweets"><span>🥛 عربية بالقشطة</span><span>◀</span></a></div>
-          </div>
-        </div>
-
-        <a href="https://wa.me/962776999555" target="_blank" class="shiny-gold-btn text-white font-extrabold px-5 py-2 rounded-full text-xs whitespace-nowrap">
-          طلب عبر واتساب
-        </a>
-      </nav>
-
-      <!-- الشعار في أقصى اليمين -->
-      <a href="#" class="flex items-center gap-2">
-        <span class="font-black text-xl text-[#5B1408]">حلويات نفيسة</span>
-      </a>
-    </div>
-  </header>
-
-  <!-- الهيرو الرئيسي -->
-  <section class="py-16 text-center px-4 bg-gradient-to-br from-[#5B1408] via-[#442824] to-[#2A1512] text-[#FAF6ED]">
-    <div class="max-w-4xl mx-auto space-y-4">
-      <div class="inline-flex items-center gap-2 bg-[#A08048]/20 border border-[#A08048]/40 text-[#E1B57B] px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-semibold">
-        <span>Original Oriental Taste</span> • <span>Authentic Levantine Hospitality</span>
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-bold leading-tight">حلويات نفيسة: سوق عالمي.... بنكهة شرقية</h1>
-      <p class="text-[#FAF6ED]/80 text-sm sm:text-base">اختر صنفك المفضّل من القوائم المنسدلة وأضفه إلى السلة مباشرة.</p>
-    </div>
-  </section>
-
-  <!-- أقسام المتجر واختيار العناصر عبر Dropdown Select -->
-  <main class="max-w-7xl mx-auto px-4 py-12 space-y-10">
-
-    <!-- 1. حلويات ساخنة -->
-    <section id="hot-sweets" class="menu-card gold-border space-y-4">
-      <h2 class="text-xl font-bold text-[#5B1408] border-b border-[#A08048]/20 pb-3">🔥 حلويات ساخنة (Hot Sweets Dishes)</h2>
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <select id="select-hot" class="w-full sm:w-2/3 bg-[#FAF6ED] border border-[#A08048]/50 text-[#442824] p-3 rounded-xl text-sm focus:outline-none">
-          <option value="" disabled selected>-- اختر الصنف والنوع --</option>
-          <option value="بين نارين (2.00 / 3.50 / 7.00 د.أ)">بين نارين - يبدأ من 2.00 د.أ</option>
-          <option value="بين نارين تركي (10.00 د.أ)">بين نارين تركي - 10.00 د.أ</option>
-          <option value="كنافة خشنة (1.00 - 7.00 د.أ)">كنافة خشنة - يبدأ من 1.00 د.أ</option>
-          <option value="كنافة خشنة اكسترا (7.50 د.أ)">كنافة خشنة اكسترا - 7.50 د.أ</option>
-          <option value="كنافة ناعمة (1.00 - 7.00 د.أ)">كنافة ناعمة - يبدأ من 1.00 د.أ</option>
-          <option value="كنافة ناعمة سبشل (8.50 د.أ)">كنافة ناعمة سبشل - 8.50 د.أ</option>
-          <option value="كلاج جوز (7.50 د.أ)">كلاج جوز - 7.50 د.أ</option>
-        </select>
-        <button onclick="addToCart('select-hot')" class="w-full sm:w-1/3 shiny-gold-btn text-white font-bold py-3 px-6 rounded-xl text-sm">
-          إضافة إلى السلة 🛍️
-        </button>
-      </div>
-    </section>
-
-    <!-- 2. حلويات عربية بالمكسرات -->
-    <section id="arabic-nuts" class="menu-card gold-border space-y-4">
-      <h2 class="text-xl font-bold text-[#5B1408] border-b border-[#A08048]/20 pb-3">🌰 حلويات عربية بالمكسرات (Assorted Baklava)</h2>
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <select id="select-nuts" class="w-full sm:w-2/3 bg-[#FAF6ED] border border-[#A08048]/50 text-[#442824] p-3 rounded-xl text-sm focus:outline-none">
-          <option value="" disabled selected>-- اختر الصنف والنوع --</option>
-          <option value="فستقية (20.00 د.أ)">فستقية - 20.00 د.أ</option>
-          <option value="شعبيات جوز (7.00 د.أ)">شعبيات جوز - 7.00 د.أ</option>
-          <option value="بصمة فستق (17.00 د.أ)">بصمة فستق - 17.00 د.أ</option>
-          <option value="مشكل عربي رويال معدن (29.00 د.أ)">مشكل عربي رويال معدن - 29.00 د.أ</option>
-          <option value="بلورية بيضاء فستق (27.00 د.أ)">بلورية بيضاء فستق - 27.00 د.أ</option>
-          <option value="مبرومة فستق (30.00 د.أ)">مبرومة فستق - 30.00 د.أ</option>
-        </select>
-        <button onclick="addToCart('select-nuts')" class="w-full sm:w-1/3 shiny-gold-btn text-white font-bold py-3 px-6 rounded-xl text-sm">
-          إضافة إلى السلة 🛍️
-        </button>
-      </div>
-    </section>
-
-    <!-- 3. حلويات غربية -->
-    <section id="western-sweets" class="menu-card gold-border space-y-4">
-      <h2 class="text-xl font-bold text-[#5B1408] border-b border-[#A08048]/20 pb-3">🍰 حلويات غربية (Western Sweets)</h2>
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <select id="select-western" class="w-full sm:w-2/3 bg-[#FAF6ED] border border-[#A08048]/50 text-[#442824] p-3 rounded-xl text-sm focus:outline-none">
-          <option value="" disabled selected>-- اختر الصنف والنوع --</option>
-          <option value="كيكة تركية (7.00 د.أ)">كيكة تركية - 7.00 د.أ</option>
-          <option value="تارت (15.00 د.أ)">تارت - 15.00 د.أ</option>
-          <option value="سان سيباستيان قطعة (2.25 د.أ)">سان سيباستيان قطعة - 2.25 د.أ</option>
-          <option value="شوكولا دبي (2.50 د.أ)">شوكولا دبي - 2.50 د.أ</option>
-          <option value="كنافة نوتيلا (15.00 د.أ)">كنافة نوتيلا - 15.00 د.أ</option>
-        </select>
-        <button onclick="addToCart('select-western')" class="w-full sm:w-1/3 shiny-gold-btn text-white font-bold py-3 px-6 rounded-xl text-sm">
-          إضافة إلى السلة 🛍️
-        </button>
-      </div>
-    </section>
-
-    <!-- 4. حلويات عربية بالجبنة -->
-    <section id="arabic-cheese" class="menu-card gold-border space-y-4">
-      <h2 class="text-xl font-bold text-[#5B1408] border-b border-[#A08048]/20 pb-3">🧀 حلويات عربية بالجبنة (Arabian Sweets with Cheese)</h2>
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <select id="select-cheese" class="w-full sm:w-2/3 bg-[#FAF6ED] border border-[#A08048]/50 text-[#442824] p-3 rounded-xl text-sm focus:outline-none">
-          <option value="" disabled selected>-- اختر الصنف والنوع --</option>
-          <option value="كنافة مفروكة خشبة (8.00 د.أ)">كنافة مفروكة خشبة - 8.00 د.أ</option>
-          <option value="حلاوة الجبن (10.00 د.أ)">حلاوة الجبن - 10.00 د.أ</option>
-          <option value="مبرومة جبنة (6.50 د.أ)">مبرومة جبنة - 6.50 د.أ</option>
-          <option value="كلاج جبنة (7.50 د.أ)">كلاج جبنة - 7.50 د.أ</option>
-        </select>
-        <button onclick="addToCart('select-cheese')" class="w-full sm:w-1/3 shiny-gold-btn text-white font-bold py-3 px-6 rounded-xl text-sm">
-          إضافة إلى السلة 🛍️
-        </button>
-      </div>
-    </section>
-
-    <!-- 5. حلويات لايت -->
-    <section id="lite-sweets" class="menu-card gold-border space-y-4">
-      <h2 class="text-xl font-bold text-[#5B1408] border-b border-[#A08048]/20 pb-3">🍃 حلويات لايت (Lite Sweets)</h2>
-      <div class="flex flex-col sm:flex-row items-center gap-4">
-        <select id="select-lite" class="w-full sm:w-2/3 bg-[#FAF6ED] border border-[#A08048]/50 text-[#442824] p-3 rounded-xl text-sm focus:outline-none">
-          <option value="" disabled selected>-- اختر الصنف والنوع --</option>
-          <option value="مشكل عربي لايت - 900 غرام (25.00 د.أ)">مشكل عربي لايت - 900 غرام - 25.00 د.أ</option>
-          <option value="مشكل معمول لايت - 750 غرام (14.00 د.أ)">مشكل معمول لايت - 750 غرام - 14.00 د.أ</option>
-          <option value="معمول فستق لايت - 500 غرام (9.00 د.أ)">معمول فستق لايت - 500 غرام - 9.00 د.أ</option>
-        </select>
-        <button onclick="addToCart('select-lite')" class="w-full sm:w-1/3 shiny-gold-btn text-white font-bold py-3 px-6 rounded-xl text-sm">
-          إضافة إلى السلة 🛍️
-        </button>
-      </div>
-    </section>
-
-    <!-- 6. المطبخ الشامي والضيا
+      document.
