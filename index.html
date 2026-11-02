@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nafeeseh | حلويات نفيسة - An Authentic Levantine Taste</title>
+  <title data-en="Nafeeseh | حلويات نفيسة - An Authentic Levantine Taste" data-ar="حلويات نفيسة | Nafeeseh - مذاق مشرقي أصيل">Nafeeseh | حلويات نفيسة - An Authentic Levantine Taste</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts for Editorial Luxury & Arabic Support -->
@@ -26,8 +26,8 @@
             }
           },
           fontFamily: {
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', '"Cairo"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '"Cairo"', 'sans-serif'],
             arabic: ['"Cairo"', 'sans-serif']
           }
         }
@@ -61,23 +61,29 @@
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      text-align: center;
+      padding: 1rem;
     }
   </style>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col bg-cream-bg">
 
   <!-- ==========================================
-       1. TOP UTILITY BAR (Call Center & Socials)
+       1. TOP UTILITY BAR (Call Center & Language Toggle)
        ========================================== -->
   <div class="bg-brand-dark text-cream-bg text-xs border-b border-cream-border/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
       <div class="flex items-center space-x-4">
-        <a href="tel:0096265508550" class="hover:text-brand-gold transition">Call Center: 0096265508550</a>
+        <a href="tel:0096265508550" class="hover:text-brand-gold transition">
+          <span data-en="Call Center: 0096265508550" data-ar="مركز الاتصال: 0096265508550">Call Center: 0096265508550</span>
+        </a>
         <span class="opacity-30">|</span>
-        <button onclick="navigateTo('boutiques')" class="hover:text-brand-gold transition">Find a Boutique</button>
+        <button onclick="navigateTo('boutiques')" class="hover:text-brand-gold transition">
+          <span data-en="Find a Boutique" data-ar="فروعنا">Find a Boutique</span>
+        </button>
       </div>
       <div class="hidden md:block tracking-widest uppercase text-[11px] text-cream-border">
-        A Legacy of Levantine Taste. Reimagined in Luxury.
+        <span data-en="A Legacy of Levantine Taste. Reimagined in Luxury." data-ar="إرث من المذاق المشرقي. معاد تصميمه بافخامة.">A Legacy of Levantine Taste. Reimagined in Luxury.</span>
       </div>
       <div class="flex items-center space-x-4">
         <div class="flex items-center space-x-3 text-cream-border">
@@ -87,7 +93,9 @@
           <a href="https://www.linkedin.com/showcase/nafeeseh-sweets/?viewAsMember=true" target="_blank" class="hover:text-brand-gold transition">IN</a>
         </div>
         <span class="opacity-30">|</span>
-        <button class="hover:text-brand-gold transition font-arabic">العربية</button>
+        <button onclick="toggleLanguage()" id="lang-toggle-btn" class="hover:text-brand-gold transition font-arabic font-semibold text-brand-gold">
+          العربية
+        </button>
       </div>
     </div>
   </div>
@@ -101,9 +109,15 @@
         
         <!-- Left Navigation -->
         <nav class="hidden lg:flex items-center space-x-8 text-sm tracking-wide uppercase font-medium">
-          <button onclick="navigateTo('home')" class="nav-btn text-brand-gold border-b-2 border-brand-gold pb-1" data-target="home">Home</button>
-          <button onclick="navigateTo('collections')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="collections">Collections</button>
-          <button onclick="navigateTo('heritage')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="heritage">Our Craft</button>
+          <button onclick="navigateTo('home')" class="nav-btn text-brand-gold border-b-2 border-brand-gold pb-1" data-target="home">
+            <span data-en="Home" data-ar="الرئيسية">Home</span>
+          </button>
+          <button onclick="navigateTo('collections')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="collections">
+            <span data-en="Collections" data-ar="التشكيلات">Collections</span>
+          </button>
+          <button onclick="navigateTo('heritage')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="heritage">
+            <span data-en="Our Craft" data-ar="حرفتنا">Our Craft</span>
+          </button>
         </nav>
 
         <!-- Mobile Hamburger Button -->
@@ -119,22 +133,26 @@
         <div class="flex-shrink-0 text-center cursor-pointer" onclick="navigateTo('home')">
           <img src="Logo Nafeeseh.png" alt="Nafeeseh Logo" class="h-10 mx-auto mb-0.5 object-contain" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
           <div id="fallback-logo" style="display:none;" class="font-serif text-2xl tracking-widest uppercase font-semibold text-brand-dark">NAFEESEH</div>
-          <div class="text-[9px] tracking-[0.2em] uppercase text-cream-muted">Original Oriental Taste</div>
+          <div class="text-[9px] tracking-[0.2em] uppercase text-cream-muted" data-en="Original Oriental Taste" data-ar="مذاق مشرقي أصيل">Original Oriental Taste</div>
         </div>
 
         <!-- Right Navigation -->
         <div class="hidden lg:flex items-center space-x-8 text-sm tracking-wide uppercase font-medium">
-          <button onclick="navigateTo('corporate')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="corporate">Corporate Gifting</button>
-          <button onclick="navigateTo('boutiques')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="boutiques">Boutiques</button>
+          <button onclick="navigateTo('corporate')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="corporate">
+            <span data-en="Corporate Gifting" data-ar="الهدايا المؤسسية">Corporate Gifting</span>
+          </button>
+          <button onclick="navigateTo('boutiques')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="boutiques">
+            <span data-en="Boutiques" data-ar="فروعنا">Boutiques</span>
+          </button>
           <button onclick="navigateTo('collections')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-            Shop Collections
+            <span data-en="Shop Collections" data-ar="تسوق التشكيلات">Shop Collections</span>
           </button>
         </div>
 
         <!-- Mobile Right Action -->
         <div class="lg:hidden">
           <button onclick="navigateTo('collections')" class="p-2 text-xs uppercase border border-cream-border px-2.5 py-1.5">
-            Shop
+            <span data-en="Shop" data-ar="تسوق">Shop</span>
           </button>
         </div>
       </div>
@@ -142,11 +160,11 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden lg:hidden bg-cream-surface border-b border-cream-border px-6 py-4 space-y-3 text-sm uppercase tracking-wider">
-      <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Home</button>
-      <button onclick="navigateTo('collections'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Collections (Catalog)</button>
-      <button onclick="navigateTo('corporate'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Corporate Gifting</button>
-      <button onclick="navigateTo('boutiques'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Walk-In Boutiques</button>
-      <button onclick="navigateTo('heritage'); toggleMobileMenu()" class="block w-full text-left py-2">Our Craft & Story</button>
+      <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60" data-en="Home" data-ar="الرئيسية">Home</button>
+      <button onclick="navigateTo('collections'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60" data-en="Collections (Catalog)" data-ar="التشكيلات (الكتالوج)">Collections (Catalog)</button>
+      <button onclick="navigateTo('corporate'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60" data-en="Corporate Gifting" data-ar="الهدايا المؤسسية">Corporate Gifting</button>
+      <button onclick="navigateTo('boutiques'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60" data-en="Walk-In Boutiques" data-ar="معارضنا">Walk-In Boutiques</button>
+      <button onclick="navigateTo('heritage'); toggleMobileMenu()" class="block w-full text-left py-2" data-en="Our Craft & Story" data-ar="حرفتنا وقصتنا">Our Craft & Story</button>
     </div>
   </header>
 
@@ -168,45 +186,45 @@
             Your browser does not support the video tag.
           </video>
           <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/30 to-transparent flex flex-col justify-end p-8 sm:p-14 text-cream-bg text-center">
-            <h1 class="font-serif text-3xl sm:text-5xl uppercase tracking-wider mb-3">A Legacy of Levantine Taste. Reimagined in Luxury.</h1>
-            <p class="max-w-2xl mx-auto text-sm sm:text-base font-light text-cream-border mb-8">
+            <h1 class="font-serif text-3xl sm:text-5xl uppercase tracking-wider mb-3" data-en="A Legacy of Levantine Taste. Reimagined in Luxury." data-ar="إرث من المذاق المشرقي. معاد تصميمه بالفخامة.">A Legacy of Levantine Taste. Reimagined in Luxury.</h1>
+            <p class="max-w-2xl mx-auto text-sm sm:text-base font-light text-cream-border mb-8" data-en="Discover the authentic taste of Nafeeseh, where generations of oriental sweets craftsmanship meet modern elegance and the timeless art of generosity." data-ar="اكتشف المذاق الأصيل لحلويات نفيسة، حيث تلتقي عقود من حرفة الحلويات الشرقية بالأناقة المعصرية وفن الضيافة الخالد.">
               Discover the authentic taste of Nafeeseh, where generations of oriental sweets craftsmanship meet modern elegance and the timeless art of generosity.
             </p>
             <div>
               <button onclick="navigateTo('collections')" class="px-8 py-3.5 bg-brand-gold text-brand-dark font-semibold text-xs uppercase tracking-[0.2em] hover:bg-cream-bg transition shadow-lg">
-                Discover the Collections
+                <span data-en="Discover the Collections" data-ar="استكشف التشكيلات">Discover the Collections</span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Signature Categories Grid (4 Main Product Pillars) -->
+      <!-- Signature Categories Grid -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-cream-border">
         <div class="text-center mb-12">
-          <div class="text-xs uppercase tracking-[0.25em] text-cream-muted mb-2">Artisanal Masterpieces</div>
-          <h2 class="font-serif text-3xl uppercase tracking-wider">Signature Categories</h2>
+          <div class="text-xs uppercase tracking-[0.25em] text-cream-muted mb-2" data-en="Artisanal Masterpieces" data-ar="تحف حرفية">Artisanal Masterpieces</div>
+          <h2 class="font-serif text-3xl uppercase tracking-wider" data-en="Signature Categories" data-ar="الفئات المميزة">Signature Categories</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Traditional Baklava Image]</div>
-            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Traditional Baklava</h3>
-            <p class="text-[11px] text-cream-muted text-center mt-1">Crisp flaky layers with pure ghee & pistachios</p>
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm" data-en="[Traditional Baklava Image]" data-ar="[صورة البقلاوة التقليدية]">[Traditional Baklava Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition" data-en="Traditional Baklava" data-ar="البقلاوة التقليدية">Traditional Baklava</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1" data-en="Crisp flaky layers with pure ghee & pistachios" data-ar="طبقات مقرمشة بالسمن البلدي الفاخر والفستق الحلبي">Crisp flaky layers with pure ghee & pistachios</p>
           </div>
           <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Artisanal Maamoul Image]</div>
-            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Artisanal Maamoul</h3>
-            <p class="text-[11px] text-cream-muted text-center mt-1">Hand-pressed semolina filled with dates & nuts</p>
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm" data-en="[Artisanal Maamoul Image]" data-ar="[صورة المعمول الفاخر]">[Artisanal Maamoul Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition" data-en="Artisanal Maamoul" data-ar="المعمول الفاخر">Artisanal Maamoul</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1" data-en="Hand-pressed semolina filled with dates & nuts" data-ar="سميد محشو بالتمر والمكسرات الفاخرة">Hand-pressed semolina filled with dates & nuts</p>
           </div>
           <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Signature Kunafa Image]</div>
-            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Signature Kunafa</h3>
-            <p class="text-[11px] text-cream-muted text-center mt-1">Melted Akkawi cheese & golden semolina crust</p>
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm" data-en="[Signature Kunafa Image]" data-ar="[صورة الكنافة المميزة]">[Signature Kunafa Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition" data-en="Signature Kunafa" data-ar="الكنافة النابلسية">Signature Kunafa</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1" data-en="Melted Akkawi cheese & golden semolina crust" data-ar="جبنة عكاوي مطاطية وقشرة سميد ذهبية مقرمشة">Melted Akkawi cheese & golden semolina crust</p>
           </div>
           <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Luxury Assortments Image]</div>
-            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Luxury Assortments</h3>
-            <p class="text-[11px] text-cream-muted text-center mt-1">Curated gift boxes for memorable occasions</p>
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm" data-en="[Luxury Assortments Image]" data-ar="[صورة التشكيلات الفاخرة]">[Luxury Assortments Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition" data-en="Luxury Assortments" data-ar="التشكيلات الفاخرة">Luxury Assortments</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1" data-en="Curated gift boxes for memorable occasions" data-ar="صناديق هدايا مختارة بعناية للمناسبات الخاصة">Curated gift boxes for memorable occasions</p>
           </div>
         </div>
       </div>
@@ -214,16 +232,16 @@
       <!-- Editorial Heritage Teaser Feature -->
       <div class="bg-cream-surface border-y border-cream-border py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="wireframe-box h-[420px] bg-cream-bg shadow-inner">[Close-up of traditional baklava being layered and finished by hand]</div>
+          <div class="wireframe-box h-[420px] bg-cream-bg shadow-inner" data-en="[Close-up of traditional baklava being layered and finished by hand]" data-ar="[صورة مقربة لإعداد البقلاوة التقليدية يدوياً]">[Close-up of traditional baklava being layered and finished by hand]</div>
           <div class="space-y-6">
-            <div class="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold">Our Heritage & Craftsmanship</div>
-            <h2 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider text-brand-dark">Rooted in Levantine Hospitality</h2>
-            <p class="text-sm sm:text-base text-cream-dark leading-relaxed font-light">
+            <div class="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold" data-en="Our Heritage & Craftsmanship" data-ar="تراثنا وحرفتنا">Our Heritage & Craftsmanship</div>
+            <h2 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider text-brand-dark" data-en="Rooted in Levantine Hospitality" data-ar="متجذّرون في الأصالة وضيافة المشرق">Rooted in Levantine Hospitality</h2>
+            <p class="text-sm sm:text-base text-cream-dark leading-relaxed font-light" data-en="Rooted in the rich traditions of Levantine hospitality, Nafeeseh brings generations of authentic craftsmanship and timeless flavours to every creation. From carefully layered pastries to the finest ingredients and delicate finishing touches, every sweet tells a story of heritage, passion, and artistry." data-ar="متجذرة في تقاليد الضيافة المشرقية العريقة، تقدم حلويات نفيسة أجيالاً من الحرفية الأصيلة والنكهات الخالدة في كل إبداع. من المعجنات المحضرة بعناية فائقة إلى أخر لمسة إتقان، تحكي كل قطعة حلوى قصة إرث وشغف فني أصيل.">
               Rooted in the rich traditions of Levantine hospitality, Nafeeseh brings generations of authentic craftsmanship and timeless flavours to every creation. From carefully layered pastries to the finest ingredients and delicate finishing touches, every sweet tells a story of heritage, passion, and artistry.
             </p>
             <div>
               <button onclick="navigateTo('heritage')" class="px-8 py-3.5 border border-brand-dark text-xs uppercase tracking-[0.2em] hover:bg-brand-dark hover:text-cream-bg transition">
-                Explore Our Craft
+                <span data-en="Explore Our Craft" data-ar="استكشف حرفتنا">Explore Our Craft</span>
               </button>
             </div>
           </div>
@@ -234,23 +252,23 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="p-10 border border-cream-border bg-cream-surface flex flex-col justify-between h-96 shadow-sm">
-            <div class="wireframe-box h-48 bg-cream-bg mb-6">[Corporate Gifting Tier Visual]</div>
+            <div class="wireframe-box h-48 bg-cream-bg mb-6" data-en="[Corporate Gifting Tier Visual]" data-ar="[صورة فئات الهدايا المؤسسية]">[Corporate Gifting Tier Visual]</div>
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-serif text-xl uppercase tracking-wide">Corporate B2B Gifting</h3>
-                <p class="text-xs text-cream-muted mt-1">Customized executive packaging & bulk orders</p>
+                <h3 class="font-serif text-xl uppercase tracking-wide" data-en="Corporate B2B Gifting" data-ar="الهدايا المؤسسية والشركات">Corporate B2B Gifting</h3>
+                <p class="text-xs text-cream-muted mt-1" data-en="Customized executive packaging & bulk orders" data-ar="تغليف تنفيذي مخصص وطلبات الجملة">Customized executive packaging & bulk orders</p>
               </div>
-              <button onclick="navigateTo('corporate')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">Explore</button>
+              <button onclick="navigateTo('corporate')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Explore" data-ar="استكشف">Explore</button>
             </div>
           </div>
           <div class="p-10 border border-cream-border bg-cream-surface flex flex-col justify-between h-96 shadow-sm">
-            <div class="wireframe-box h-48 bg-cream-bg mb-6">[Walk-In Boutique Map Visual]</div>
+            <div class="wireframe-box h-48 bg-cream-bg mb-6" data-en="[Walk-In Boutique Map Visual]" data-ar="[صورة خريطة المعارض]">[Walk-In Boutique Map Visual]</div>
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-serif text-xl uppercase tracking-wide">Walk-In Boutiques</h3>
-                <p class="text-xs text-cream-muted mt-1">Visit our branches across Amman & Jordan</p>
+                <h3 class="font-serif text-xl uppercase tracking-wide" data-en="Walk-In Boutiques" data-ar="معارضنا المباشرة">Walk-In Boutiques</h3>
+                <p class="text-xs text-cream-muted mt-1" data-en="Visit our branches across Amman & Jordan" data-ar="تفضل بزيارة فروعنا في عمّان والأردن">Visit our branches across Amman & Jordan</p>
               </div>
-              <button onclick="navigateTo('boutiques')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">Locate</button>
+              <button onclick="navigateTo('boutiques')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Locate" data-ar="المواقع">Locate</button>
             </div>
           </div>
         </div>
@@ -264,47 +282,47 @@
     <section id="page-collections" class="page-view">
       <div class="bg-cream-surface border-b border-cream-border py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Collections</div>
-          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">The Nafeeseh Collections</h1>
-          <p class="text-xs text-cream-muted mt-2">Select a category below to explore our authentic sweets and packaging options.</p>
+          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2" data-en="Home / Collections" data-ar="الرئيسية / التشكيلات">Home / Collections</div>
+          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider" data-en="The Nafeeseh Collections" data-ar="تشكيلات حلويات نفيسة">The Nafeeseh Collections</h1>
+          <p class="text-xs text-cream-muted mt-2" data-en="Select a category below to explore our authentic sweets and packaging options." data-ar="اختر قسماً أدناه لاستكشاف حلوياتنا الأصيلة وخيارات التغليف الفاخرة.">Select a category below to explore our authentic sweets and packaging options.</p>
         </div>
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Category Navigation Bar -->
         <div class="flex flex-wrap items-center justify-center border-b border-cream-border pb-6 mb-12 gap-3">
-          <button onclick="filterCategory('all')" id="cat-btn-all" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider bg-brand-dark text-cream-bg font-medium transition">All Sweets</button>
-          <button onclick="filterCategory('hot')" id="cat-btn-hot" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات ساخنة (Hot Sweets)</button>
-          <button onclick="filterCategory('nuts')" id="cat-btn-nuts" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالمكسرات</button>
-          <button onclick="filterCategory('western')" id="cat-btn-western" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات غربية</button>
-          <button onclick="filterCategory('cheese')" id="cat-btn-cheese" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالجبنة</button>
-          <button onclick="filterCategory('light')" id="cat-btn-light" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات لايت</button>
-          <button onclick="filterCategory('dry')" id="cat-btn-dry" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">نواشف بأنواعها</button>
-          <button onclick="filterCategory('cream')" id="cat-btn-cream" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالقشطة</button>
-          <button onclick="filterCategory('orders')" id="cat-btn-orders" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">للتواصي (Custom Orders)</button>
+          <button onclick="filterCategory('all')" id="cat-btn-all" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider bg-brand-dark text-cream-bg font-medium transition" data-en="All Sweets" data-ar="جميع الحلويات">All Sweets</button>
+          <button onclick="filterCategory('hot')" id="cat-btn-hot" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Hot Sweets" data-ar="حلويات ساخنة">Hot Sweets</button>
+          <button onclick="filterCategory('nuts')" id="cat-btn-nuts" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Arabic Sweets with Nuts" data-ar="حلويات عربية بالمكسرات">Arabic Sweets with Nuts</button>
+          <button onclick="filterCategory('western')" id="cat-btn-western" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Western Sweets" data-ar="حلويات غربية">Western Sweets</button>
+          <button onclick="filterCategory('cheese')" id="cat-btn-cheese" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Arabic Cheese Sweets" data-ar="حلويات عربية بالجبنة">Arabic Cheese Sweets</button>
+          <button onclick="filterCategory('light')" id="cat-btn-light" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Light Sweets" data-ar="حلويات لايت">Light Sweets</button>
+          <button onclick="filterCategory('dry')" id="cat-btn-dry" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Dry Biscuits & Barazik" data-ar="نواشف بأنواعها">Dry Biscuits & Barazik</button>
+          <button onclick="filterCategory('cream')" id="cat-btn-cream" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Arabic Cream Sweets" data-ar="حلويات عربية بالقشطة">Arabic Cream Sweets</button>
+          <button onclick="filterCategory('orders')" id="cat-btn-orders" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium" data-en="Custom Orders" data-ar="للتواصي">Custom Orders</button>
         </div>
 
-        <!-- Products Grid with Size/Weight Dropdown Selectors -->
+        <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           
-          <!-- 1. حلويات ساخنة (Hot Sweets) -->
+          <!-- 1. Hot Sweets -->
           <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="hot">
             <div>
-              <div class="wireframe-box aspect-square mb-4">[Kunafa Nabulsiya Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات ساخنة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Signature Nabulsi Kunafa</h3>
-              <p class="text-xs text-cream-muted mt-1">Warm, crispy spun semolina crust layered with stretchy Akkawi cheese and soaked in aromatic orange-blossom syrup.</p>
+              <div class="wireframe-box aspect-square mb-4" data-en="[Kunafa Nabulsiya Photo]" data-ar="[صورة كنافة نابلسية]">[Kunafa Nabulsiya Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold" data-en="Hot Sweets" data-ar="حلويات ساخنة">Hot Sweets</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1" data-en="Signature Nabulsi Kunafa" data-ar="كنافة نابلسية أصلية">Signature Nabulsi Kunafa</h3>
+              <p class="text-xs text-cream-muted mt-1" data-en="Warm, crispy spun semolina crust layered with stretchy Akkawi cheese and soaked in aromatic orange-blossom syrup." data-ar="عجينة كنافة ساخنة ومقرمشة محشوة بجبنة عكاوي مطاطية ومسقية بالقطر المنكه بماء الزهر.">Warm, crispy spun semolina crust layered with stretchy Akkawi cheese and soaked in aromatic orange-blossom syrup.</p>
             </div>
             <div class="mt-6 space-y-3">
               <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1" data-en="Select Size / Weight:" data-ar="اختر الحجم / الوزن:">Select Size / Weight:</label>
                 <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
+                  <option data-en="500g Box" data-ar="علبة 500 جرام">500g Box</option>
+                  <option data-en="1kg Box" data-ar="علبة 1 كيلو">1kg Box</option>
+                  <option data-en="Luxury Tin (1.5kg)" data-ar="تنكة فاخرة (1.5 كيلو)">Luxury Tin (1.5kg)</option>
                 </select>
               </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Available in All Branches" data-ar="متوفر في جميع الفروع">
                 Available in All Branches
               </button>
             </div>
@@ -312,44 +330,44 @@
 
           <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="hot">
             <div>
-              <div class="wireframe-box aspect-square mb-4">[Ashta Bil Asali Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات ساخنة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Ashta Bil Asali</h3>
-              <p class="text-xs text-cream-muted mt-1">Silky, homemade clotted cream served warm with a drizzle of pure wildflower honey and crushed pistachios.</p>
+              <div class="wireframe-box aspect-square mb-4" data-en="[Ashta Bil Asali Photo]" data-ar="[صورة قشطة بالعسل]">[Ashta Bil Asali Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold" data-en="Hot Sweets" data-ar="حلويات ساخنة">Hot Sweets</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1" data-en="Ashta Bil Asali" data-ar="قشطة بالعسل">Ashta Bil Asali</h3>
+              <p class="text-xs text-cream-muted mt-1" data-en="Silky, homemade clotted cream served warm with a drizzle of pure wildflower honey and crushed pistachios." data-ar="قشطة بلدية طازجة وناعمة تقدم ساخنة مع قطرات من عسل البراري الصافي والفستق الحلبي المطحون.">Silky, homemade clotted cream served warm with a drizzle of pure wildflower honey and crushed pistachios.</p>
             </div>
             <div class="mt-6 space-y-3">
               <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1" data-en="Select Size / Weight:" data-ar="اختر الحجم / الوزن:">Select Size / Weight:</label>
                 <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
+                  <option data-en="500g Box" data-ar="علبة 500 جرام">500g Box</option>
+                  <option data-en="1kg Box" data-ar="علبة 1 كيلو">1kg Box</option>
+                  <option data-en="Luxury Tin (1.5kg)" data-ar="تنكة فاخرة (1.5 كيلو)">Luxury Tin (1.5kg)</option>
                 </select>
               </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Available in All Branches" data-ar="متوفر في جميع الفروع">
                 Available in All Branches
               </button>
             </div>
           </div>
 
-          <!-- 2. حلويات عربية بالمكسرات (Arabic Sweets with Nuts) -->
+          <!-- 2. Arabic Sweets with Nuts -->
           <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="nuts">
             <div>
-              <div class="wireframe-box aspect-square mb-4">[Royal Pistachio Baklava Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالمكسرات</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Royal Pistachio Baklava</h3>
-              <p class="text-xs text-cream-muted mt-1">Dozens of razor-thin, butter-brushed pastry layers generously packed with premium roasted green pistachios.</p>
+              <div class="wireframe-box aspect-square mb-4" data-en="[Royal Pistachio Baklava Photo]" data-ar="[صورة بقلاوة بالفستق الحلبي]">[Royal Pistachio Baklava Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold" data-en="Arabic Sweets with Nuts" data-ar="حلويات عربية بالمكسرات">Arabic Sweets with Nuts</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1" data-en="Royal Pistachio Baklava" data-ar="بقلاوة ملكية بالفستق الحلبي">Royal Pistachio Baklava</h3>
+              <p class="text-xs text-cream-muted mt-1" data-en="Dozens of razor-thin, butter-brushed pastry layers generously packed with premium roasted green pistachios." data-ar="عشرات الطبقات الرقيقة والمدهونة بالسمن النقي، محشوة بغزارة بأجود أنواع الفستق الحلبي الأخضر المحمص.">Dozens of razor-thin, butter-brushed pastry layers generously packed with premium roasted green pistachios.</p>
             </div>
             <div class="mt-6 space-y-3">
               <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1" data-en="Select Size / Weight:" data-ar="اختر الحجم / الوزن:">Select Size / Weight:</label>
                 <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
+                  <option data-en="500g Box" data-ar="علبة 500 جرام">500g Box</option>
+                  <option data-en="1kg Box" data-ar="علبة 1 كيلو">1kg Box</option>
+                  <option data-en="Luxury Tin (1.5kg)" data-ar="تنكة فاخرة (1.5 كيلو)">Luxury Tin (1.5kg)</option>
                 </select>
               </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Available in All Branches" data-ar="متوفر في جميع الفروع">
                 Available in All Branches
               </button>
             </div>
@@ -357,536 +375,34 @@
 
           <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="nuts">
             <div>
-              <div class="wireframe-box aspect-square mb-4">[Cashew Kol Woshkor Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالمكسرات</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Cashew Kol Woshkor</h3>
-              <p class="text-xs text-cream-muted mt-1">Open-faced, golden-baked crescent pastries filled with whole roasted cashews and scented with cardamom.</p>
+              <div class="wireframe-box aspect-square mb-4" data-en="[Cashew Kol Woshkor Photo]" data-ar="[صورة كل وشكور بالكاجو]">[Cashew Kol Woshkor Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold" data-en="Arabic Sweets with Nuts" data-ar="حلويات عربية بالمكسرات">Arabic Sweets with Nuts</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1" data-en="Cashew Kol Woshkor" data-ar="كل وشكور بالكاجو">Cashew Kol Woshkor</h3>
+              <p class="text-xs text-cream-muted mt-1" data-en="Open-faced, golden-baked crescent pastries filled with whole roasted cashews and scented with cardamom." data-ar="معجنات ذهبية مخبوزة على شكل هلال مفتوح، محشوة بالكاجو المحمص ومنكهة برائحة الهيل الفاخرة.">Open-faced, golden-baked crescent pastries filled with whole roasted cashews and scented with cardamom.</p>
             </div>
             <div class="mt-6 space-y-3">
               <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1" data-en="Select Size / Weight:" data-ar="اختر الحجم / الوزن:">Select Size / Weight:</label>
                 <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
+                  <option data-en="500g Box" data-ar="علبة 500 جرام">500g Box</option>
+                  <option data-en="1kg Box" data-ar="علبة 1 كيلو">1kg Box</option>
+                  <option data-en="Luxury Tin (1.5kg)" data-ar="تنكة فاخرة (1.5 كيلو)">Luxury Tin (1.5kg)</option>
                 </select>
               </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition" data-en="Available in All Branches" data-ar="متوفر في جميع الفروع">
                 Available in All Branches
               </button>
             </div>
           </div>
 
-          <!-- 3. حلويات غربية (Western Sweets) -->
+          <!-- 3. Western Sweets -->
           <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="western">
             <div>
-              <div class="wireframe-box aspect-square mb-4">[Oriental-Fused Petit Four Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات غربية</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Oriental-Fused Petit Four</h3>
-              <p class="text-xs text-cream-muted mt-1">Delicate, melt-in-the-mouth buttery biscuits dipped in Belgian dark chocolate and rolled in crushed pistachio crumbs.</p>
+              <div class="wireframe-box aspect-square mb-4" data-en="[Oriental-Fused Petit Four Photo]" data-ar="[صورة بيتي فور شرقي]">[Oriental-Fused Petit Four Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold" data-en="Western Sweets" data-ar="حلويات غربية">Western Sweets</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1" data-en="Oriental-Fused Petit Four" data-ar="بيتي فور فاخر بالشكولاتة">Oriental-Fused Petit Four</h3>
+              <p class="text-xs text-cream-muted mt-1" data-en="Delicate, melt-in-the-mouth buttery biscuits dipped in Belgian dark chocolate and rolled in crushed pistachio crumbs." data-ar="بسكويت بالزبدة يذوب في الفم، مغطى بالشوكولاتة البلجيكية الداكنة ومزين بفتات الفستق الحلبي.">Delicate, melt-in-the-mouth buttery biscuits dipped in Belgian dark chocolate and rolled in crushed pistachio crumbs.</p>
             </div>
             <div class="mt-6 space-y-3">
               <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="western">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Chocolate Maamoul Truffles Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات غربية</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Chocolate Maamoul Truffles</h3>
-              <p class="text-xs text-cream-muted mt-1">Traditional semolina date cookies elevated with a smooth outer shell of rich, dark European chocolate.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. حلويات عربية بالجبنة (Arabic Cheese Sweets) -->
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cheese">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Halawet El Jibn Rolls Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالجبنة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Halawet El Jibn Rolls</h3>
-              <p class="text-xs text-cream-muted mt-1">Tender, sweet cheese and semolina rolls filled with rich clotted cream (Ashta) and garnished with rose jam.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cheese">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Osmanliyeh bil Jibn Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالجبنة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Osmanliyeh bil Jibn</h3>
-              <p class="text-xs text-cream-muted mt-1">Toasted, shredded angel-hair pastry encasing a gooey, sweet cheese center baked to golden perfection.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <!-- 5. حلويات لايت (Light Sweets) -->
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="light">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Sugar-Free Date Maamoul Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات لايت</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Sugar-Free Date Maamoul</h3>
-              <p class="text-xs text-cream-muted mt-1">Lightly baked whole-wheat semolina filled with naturally sweet, fat-free date paste and aromatic spices.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="light">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Light Oat & Sesame Barazik Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات لايت</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Light Oat & Sesame Barazik</h3>
-              <p class="text-xs text-cream-muted mt-1">Crispy, wholesome sesame wafers baked with a touch of honey and light oats for a guilt-free crunch.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <!-- 6. نواشف بأنواعها (Dry Biscuits) -->
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="dry">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Sesame & Pistachio Barazik Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">نواشف بأنواعها</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Sesame & Pistachio Barazik</h3>
-              <p class="text-xs text-cream-muted mt-1">Crinkled shortbread biscuits blanketed in toasted sesame seeds and a base of crushed green pistachios.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="dry">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Traditional Butter Ghuraybeh Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">نواشف بأنواعها</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Traditional Butter Ghuraybeh</h3>
-              <p class="text-xs text-cream-muted mt-1">Incredibly tender, melt-away shortbread cookies topped with a single roasted almond.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <!-- 7. حلويات عربية بالقشطة (Arabic Cream / Ashta Sweets) -->
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cream">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Mafroukeh Bil Ashta Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالقشطة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Mafroukeh Bil Ashta</h3>
-              <p class="text-xs text-cream-muted mt-1">A rich crumble of semolina, butter, and sugar infused with orange blossom syrup, topped with thick fresh cream and nuts.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cream">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Warbat Bil Ashta Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالقشطة</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Warbat Bil Ashta</h3>
-              <p class="text-xs text-cream-muted mt-1">Triangle-cut flaky puff pastry pockets overflowing with sweet, velvety clotted cream and drenched in sugar syrup.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>500g Box</option>
-                  <option>1kg Box</option>
-                  <option>Luxury Tin (1.5kg)</option>
-                </select>
-              </div>
-              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
-                Available in All Branches
-              </button>
-            </div>
-          </div>
-
-          <!-- 8. للتواصي (Custom Orders / Tawasi) -->
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="orders">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Royal Celebration Dessert Tray Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">للتواصي (Custom Orders)</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Royal Celebration Dessert Tray</h3>
-              <p class="text-xs text-cream-muted mt-1">A magnificent, custom-arranged silver platter featuring a curated grand selection of Nafeeseh's finest signature pastries.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>Standard Tray (2kg)</option>
-                  <option>Grand Celebration Tray (4kg)</option>
-                  <option>Royal Tiered Display (6kg+)</option>
-                </select>
-              </div>
-              <button onclick="navigateTo('corporate')" class="w-full h-10 bg-brand-gold text-brand-dark text-xs uppercase tracking-widest font-semibold hover:bg-brand-dark hover:text-cream-bg transition">
-                Inquire For Custom Order
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="orders">
-            <div>
-              <div class="wireframe-box aspect-square mb-4">[Bespoke Wedding Baklava Tower Photo]</div>
-              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">للتواصي (Custom Orders)</span>
-              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Bespoke Wedding Baklava Tower</h3>
-              <p class="text-xs text-cream-muted mt-1">A towering architectural display of golden, syrup-infused baklava layers custom-crafted for weddings and monumental events.</p>
-            </div>
-            <div class="mt-6 space-y-3">
-              <div>
-                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
-                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-                  <option>Standard Tray (2kg)</option>
-                  <option>Grand Celebration Tray (4kg)</option>
-                  <option>Royal Tiered Display (6kg+)</option>
-                </select>
-              </div>
-              <button onclick="navigateTo('corporate')" class="w-full h-10 bg-brand-gold text-brand-dark text-xs uppercase tracking-widest font-semibold hover:bg-brand-dark hover:text-cream-bg transition">
-                Inquire For Custom Order
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 3: CORPORATE B2B GIFTING PAGE
-         ========================================== -->
-    <section id="page-corporate" class="page-view">
-      <div class="bg-cream-surface border-b border-cream-border py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Corporate Gifting</div>
-          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">Corporate & Bespoke Gifting</h1>
-          <p class="text-xs text-cream-muted mt-2">Elevate your corporate relations and celebrations with Nafeeseh's luxury packaging tiers.</p>
-        </div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="border border-cream-border p-6 bg-cream-surface space-y-4 shadow-sm">
-            <div class="wireframe-box h-48 bg-cream-bg">[Executive Gift Box Photo]</div>
-            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Executive Tier</h3>
-            <p class="text-xs text-cream-muted text-center">Curated assortment boxes featuring custom embossed sleeves with your company logo.</p>
-          </div>
-          <div class="border border-brand-gold p-6 bg-cream-surface space-y-4 shadow-sm relative">
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-dark text-[10px] uppercase px-3 py-1 font-semibold tracking-widest">Most Popular</span>
-            <div class="wireframe-box h-48 bg-cream-bg">[Prestige Velvet Tin Photo]</div>
-            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Prestige Tier</h3>
-            <p class="text-xs text-cream-muted text-center">Luxury metallic and velvet gift tins filled with premium pistachios and gourmet sweets.</p>
-          </div>
-          <div class="border border-cream-border p-6 bg-cream-surface space-y-4 shadow-sm">
-            <div class="wireframe-box h-48 bg-cream-bg">[Bespoke Celebration Display Photo]</div>
-            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Bespoke & Bulk Tier</h3>
-            <p class="text-xs text-cream-muted text-center">Large-scale event catering and personalized gift hampers for holiday seasons.</p>
-          </div>
-        </div>
-
-        <!-- Inquiry Form -->
-        <div class="max-w-2xl mx-auto border border-cream-border p-8 sm:p-12 bg-cream-surface space-y-6 shadow-sm">
-          <div class="text-center">
-            <h3 class="font-serif text-2xl uppercase tracking-wider">Corporate Inquiry Form</h3>
-            <p class="text-xs text-cream-muted mt-1">Fill out your details and our corporate sales team will contact you promptly.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" placeholder="Company Name" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
-            <input type="text" placeholder="Contact Person" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="email" placeholder="Email Address" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
-            <input type="text" placeholder="Phone / WhatsApp Number" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
-          </div>
-          <select class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
-            <option>Select Gifting Tier (Executive / Prestige / Bespoke)</option>
-            <option>Executive Tier</option>
-            <option>Prestige Tier</option>
-            <option>Bespoke / Bulk Tier</option>
-          </select>
-          <textarea rows="4" placeholder="Estimated Quantity & Custom Branding Requirements..." class="w-full bg-cream-bg border border-cream-border p-4 text-xs focus:outline-none focus:border-brand-gold"></textarea>
-          <button onclick="alert('Thank you! Your corporate inquiry has been submitted successfully.')" class="w-full h-12 bg-brand-dark text-cream-bg text-xs uppercase tracking-[0.2em] hover:bg-brand-gold transition shadow-md">
-            Submit Corporate Inquiry
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 4: WALK-IN BOUTIQUES DIRECTORY
-         ========================================== -->
-    <section id="page-boutiques" class="page-view">
-      <div class="bg-cream-surface border-b border-cream-border py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Retail Locations</div>
-          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">Walk-In Boutiques</h1>
-          <p class="text-xs text-cream-muted mt-2">Visit our flagship stores across Amman to experience fresh oriental sweets daily.</p>
-        </div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="space-y-4">
-            <div class="p-6 border border-brand-dark bg-cream-surface space-y-3 shadow-sm">
-              <h3 class="font-serif text-lg font-semibold uppercase">Flagship Sweifieh Branch</h3>
-              <p class="text-xs text-cream-muted leading-relaxed">Wasfi Al-Tall Street, Amman, Jordan<br>Open Daily: 9:00 AM – 12:00 AM<br>Tel: +962 6 5508550</p>
-              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 bg-brand-dark text-cream-bg text-[11px] uppercase tracking-widest hover:bg-brand-gold transition">Get Directions</a>
-            </div>
-            <div class="p-6 border border-cream-border bg-cream-surface space-y-3 shadow-sm">
-              <h3 class="font-serif text-lg font-semibold uppercase">Abdoun Boutique</h3>
-              <p class="text-xs text-cream-muted leading-relaxed">Beirut Street, Amman, Jordan<br>Open Daily: 10:00 AM – 11:00 PM<br>Tel: +962 6 5508551</p>
-              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 border border-brand-dark text-brand-dark text-[11px] uppercase tracking-widest hover:bg-brand-dark hover:text-cream-bg transition">Get Directions</a>
-            </div>
-            <div class="p-6 border border-cream-border bg-cream-surface space-y-3 shadow-sm">
-              <h3 class="font-serif text-lg font-semibold uppercase">Khalda Branch</h3>
-              <p class="text-xs text-cream-muted leading-relaxed">Medina Street Junction, Amman, Jordan<br>Open Daily: 9:00 AM – 11:30 PM<br>Tel: +962 6 5508552</p>
-              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 border border-brand-dark text-brand-dark text-[11px] uppercase tracking-widest hover:bg-brand-dark hover:text-cream-bg transition">Get Directions</a>
-            </div>
-          </div>
-          <div class="lg:col-span-2">
-            <div class="wireframe-box h-[480px] w-full shadow-sm">[Interactive Google Map Embed Showing Nafeeseh Branches in Amman]</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 5: OUR CRAFT & HERITAGE PAGE
-         ========================================== -->
-    <section id="page-heritage" class="page-view">
-      <div class="bg-cream-surface border-b border-cream-border py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Our Craft</div>
-          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">The Art of Levantine Confectionery</h1>
-          <p class="text-xs text-cream-muted mt-2">Discover the passion, pure ingredients, and timeless traditions behind Nafeeseh.</p>
-        </div>
-      </div>
-
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        <div class="wireframe-box h-96 w-full shadow-sm">[Wide Photography of Nafeeseh Master Bakers at Work]</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
-            <h3 class="font-serif text-xl uppercase">Pure Ingredients</h3>
-            <p class="text-xs text-cream-muted leading-relaxed">We source 100% pure golden ghee, premium Syrian pistachios, and fresh local dairy daily.</p>
-          </div>
-          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
-            <h3 class="font-serif text-xl uppercase">Masterful Craft</h3>
-            <p class="text-xs text-cream-muted leading-relaxed">Generations of master pastry chefs passing down secret techniques in dough layering and syrup balance.</p>
-          </div>
-          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
-            <h3 class="font-serif text-xl uppercase">Timeless Generosity</h3>
-            <p class="text-xs text-cream-muted leading-relaxed">Every box is packed with warmth and hospitality, designed to make family gatherings unforgettable.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ==========================================
-       4. GLOBAL LUXURY FOOTER
-       ========================================== -->
-  <footer class="bg-cream-surface border-t border-cream-border mt-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-        
-        <div class="space-y-4">
-          <img src="Logo Nafeeseh.png" alt="Nafeeseh Logo" class="h-10 object-contain" onerror="this.style.display='none';">
-          <p class="text-xs text-cream-muted leading-relaxed">
-            Original Oriental Taste & Authentic Levantine Sweets craftsmanship reimagined in luxury.
-          </p>
-        </div>
-
-        <div class="space-y-3 text-xs uppercase tracking-wider">
-          <div class="font-semibold text-brand-dark mb-4">Quick Links</div>
-          <button onclick="navigateTo('collections')" class="block hover:text-brand-gold transition">Collections</button>
-          <button onclick="navigateTo('corporate')" class="block hover:text-brand-gold transition">Corporate Gifting</button>
-          <button onclick="navigateTo('boutiques')" class="block hover:text-brand-gold transition">Walk-In Boutiques</button>
-          <button onclick="navigateTo('heritage')" class="block hover:text-brand-gold transition">Our Craft</button>
-        </div>
-
-        <div class="space-y-3 text-xs uppercase tracking-wider">
-          <div class="font-semibold text-brand-dark mb-4">Customer Care</div>
-          <a href="tel:0096265508550" class="block hover:text-brand-gold transition">Call Center: 0096265508550</a>
-          <span class="block text-cream-muted">Amman, Jordan</span>
-          <span class="block text-cream-muted">support@nafeeseh.com</span>
-        </div>
-
-        <div class="space-y-4">
-          <div class="text-xs uppercase tracking-wider font-semibold text-brand-dark">Connect With Us</div>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <a href="https://www.facebook.com/Nafeeseh" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">Facebook</a>
-            <a href="https://www.instagram.com/nafeeseh.jo/" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">Instagram</a>
-            <a href="https://www.youtube.com/channel/UCLiuCdCsAtoU8_jKv71Gbtw/featured" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">YouTube</a>
-            <a href="https://www.linkedin.com/showcase/nafeeseh-sweets/?viewAsMember=true" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">LinkedIn</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="border-t border-cream-border pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-muted">
-        <div>© <span id="year"></span> Nafeeseh Sweets. All Rights Reserved.</div>
-        <div class="flex space-x-6 mt-4 sm:mt-0">
-          <span class="cursor-pointer hover:underline">Privacy Policy</span>
-          <span class="cursor-pointer hover:underline">Terms of Service</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ==========================================
-       5. JAVASCRIPT ROUTER & CATEGORY FILTER
-       ========================================== -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page-view').forEach(page => {
-        page.classList.remove('active');
-      });
-
-      const targetPage = document.getElementById('page-' + pageId);
-      if (targetPage) {
-        targetPage.classList.add('active');
-      }
-
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        if (btn.getAttribute('data-target') === pageId) {
-          btn.classList.add('text-brand-gold', 'border-b-2', 'border-brand-gold');
-        } else {
-          btn.classList.remove('text-brand-gold', 'border-b-2', 'border-brand-gold');
-        }
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    }
-
-    function filterCategory(cat) {
-      // Highlight active tab
-      document.querySelectorAll('.cat-tab').forEach(tab => {
-        tab.classList.remove('bg-brand-dark', 'text-cream-bg');
-        tab.classList.add('bg-cream-surface', 'border', 'border-cream-border');
-      });
-      const activeBtn = document.getElementById('cat-btn-' + cat);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-cream-surface', 'border', 'border-cream-border');
-        activeBtn.classList.add('bg-brand-dark', 'text-cream-bg');
-      }
-
-      // Filter product cards
-      document.querySelectorAll('.product-card').forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-category') === cat) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-  </script>
-
-</body>
-</html>
+                <label class="block text
