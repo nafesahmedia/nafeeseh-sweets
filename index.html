@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nafeeseh | Website Layout & Page Structure</title>
+  <title>Nafeeseh | حلويات نفيسة - An Authentic Levantine Taste</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts for Editorial Luxury & Arabic Support -->
@@ -40,7 +40,6 @@
       background-color: #FAF6F0;
       color: #2C221E;
     }
-    /* Smooth transition for switching inner pages */
     .page-view {
       display: none;
       animation: fadeIn 0.25s ease-in-out;
@@ -52,7 +51,6 @@
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Wireframe placeholder box styling */
     .wireframe-box {
       background-color: #F3ECE1;
       border: 1px dashed #D5C7B2;
@@ -69,22 +67,27 @@
 <body class="font-sans antialiased min-h-screen flex flex-col bg-cream-bg">
 
   <!-- ==========================================
-       1. TOP UTILITY BAR (International Standard)
+       1. TOP UTILITY BAR (Call Center & Socials)
        ========================================== -->
   <div class="bg-brand-dark text-cream-bg text-xs border-b border-cream-border/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
       <div class="flex items-center space-x-4">
-        <button onclick="navigateTo('boutiques')" class="hover:text-brand-gold transition">[Utility Link: Find a Boutique]</button>
+        <a href="tel:0096265508550" class="hover:text-brand-gold transition">Call Center: 0096265508550</a>
         <span class="opacity-30">|</span>
-        <button onclick="navigateTo('corporate')" class="hover:text-brand-gold transition">[Utility Link: Corporate Portal]</button>
+        <button onclick="navigateTo('boutiques')" class="hover:text-brand-gold transition">Find a Boutique</button>
       </div>
       <div class="hidden md:block tracking-widest uppercase text-[11px] text-cream-border">
-        [Top Announcement Banner Placeholder]
+        A Legacy of Levantine Taste. Reimagined in Luxury.
       </div>
-      <div class="flex items-center space-x-3">
-        <button class="hover:text-brand-gold transition font-arabic">العربية</button>
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-3 text-cream-border">
+          <a href="https://www.facebook.com/Nafeeseh" target="_blank" class="hover:text-brand-gold transition">FB</a>
+          <a href="https://www.instagram.com/nafeeseh.jo/" target="_blank" class="hover:text-brand-gold transition">IG</a>
+          <a href="https://www.youtube.com/channel/UCLiuCdCsAtoU8_jKv71Gbtw/featured" target="_blank" class="hover:text-brand-gold transition">YT</a>
+          <a href="https://www.linkedin.com/showcase/nafeeseh-sweets/?viewAsMember=true" target="_blank" class="hover:text-brand-gold transition">IN</a>
+        </div>
         <span class="opacity-30">|</span>
-        <button class="text-brand-gold font-medium">EN</button>
+        <button class="hover:text-brand-gold transition font-arabic">العربية</button>
       </div>
     </div>
   </div>
@@ -96,7 +99,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Left Navigation (Desktop) -->
+        <!-- Left Navigation -->
         <nav class="hidden lg:flex items-center space-x-8 text-sm tracking-wide uppercase font-medium">
           <button onclick="navigateTo('home')" class="nav-btn text-brand-gold border-b-2 border-brand-gold pb-1" data-target="home">Home</button>
           <button onclick="navigateTo('collections')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="collections">Collections</button>
@@ -114,27 +117,24 @@
 
         <!-- Center Brand Logo Slot -->
         <div class="flex-shrink-0 text-center cursor-pointer" onclick="navigateTo('home')">
-          <div class="font-serif text-3xl tracking-widest uppercase font-semibold text-brand-dark">
-            NAFEESEH
-          </div>
-          <div class="text-[10px] tracking-[0.25em] uppercase text-cream-muted -mt-1">
-            [Logo / Tagline Slot]
-          </div>
+          <img src="Logo Nafeeseh.png" alt="Nafeeseh Logo" class="h-10 mx-auto mb-0.5 object-contain" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
+          <div id="fallback-logo" style="display:none;" class="font-serif text-2xl tracking-widest uppercase font-semibold text-brand-dark">NAFEESEH</div>
+          <div class="text-[9px] tracking-[0.2em] uppercase text-cream-muted">Original Oriental Taste</div>
         </div>
 
-        <!-- Right Navigation & Action Icons (Desktop) -->
+        <!-- Right Navigation -->
         <div class="hidden lg:flex items-center space-x-8 text-sm tracking-wide uppercase font-medium">
           <button onclick="navigateTo('corporate')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="corporate">Corporate Gifting</button>
           <button onclick="navigateTo('boutiques')" class="nav-btn hover:text-brand-gold transition pb-1" data-target="boutiques">Boutiques</button>
-          <button onclick="navigateTo('item-detail')" class="px-4 py-2 border border-brand-dark text-xs hover:bg-brand-dark hover:text-cream-bg transition">
-            [Inner Item View]
+          <button onclick="navigateTo('collections')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+            Shop Collections
           </button>
         </div>
 
-        <!-- Mobile Right Icon Placeholder -->
+        <!-- Mobile Right Action -->
         <div class="lg:hidden">
-          <button onclick="navigateTo('boutiques')" class="p-2 text-xs uppercase border border-cream-border px-2.5 py-1.5">
-            [Map]
+          <button onclick="navigateTo('collections')" class="p-2 text-xs uppercase border border-cream-border px-2.5 py-1.5">
+            Shop
           </button>
         </div>
       </div>
@@ -144,7 +144,6 @@
     <div id="mobile-menu" class="hidden lg:hidden bg-cream-surface border-b border-cream-border px-6 py-4 space-y-3 text-sm uppercase tracking-wider">
       <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Home</button>
       <button onclick="navigateTo('collections'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Collections (Catalog)</button>
-      <button onclick="navigateTo('item-detail'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Inner Product Page</button>
       <button onclick="navigateTo('corporate'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Corporate Gifting</button>
       <button onclick="navigateTo('boutiques'); toggleMobileMenu()" class="block w-full text-left py-2 border-b border-cream-border/60">Walk-In Boutiques</button>
       <button onclick="navigateTo('heritage'); toggleMobileMenu()" class="block w-full text-left py-2">Our Craft & Story</button>
@@ -152,80 +151,106 @@
   </header>
 
   <!-- ==========================================
-       3. DYNAMIC PAGE CONTAINER (OUTER & INNER PAGES)
+       3. DYNAMIC PAGE CONTAINER
        ========================================== -->
   <main class="flex-grow">
 
     <!-- ==========================================
-         PAGE 1: HOME PAGE STRUCTURE (OUTER)
+         PAGE 1: HOME PAGE
          ========================================== -->
     <section id="page-home" class="page-view active">
       
-      <!-- Hero Banner Structure -->
+      <!-- Video Hero Banner -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="wireframe-box h-[480px] w-full rounded-sm flex-col p-8 text-center">
-          <span class="mb-2">[Full-Width Hero Visual / Video Placeholder]</span>
-          <div class="w-64 h-8 border border-cream-border mb-3 flex items-center justify-center">[Hero Headline Slot]</div>
-          <div class="w-40 h-10 bg-brand-dark text-cream-bg flex items-center justify-center text-xs">[Primary CTA Button]</div>
-        </div>
-      </div>
-
-      <!-- Signature Categories Grid (4 Columns like Ladurée / Bateel) -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-cream-border">
-        <div class="text-center mb-10">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-1">[Section Eyebrow]</div>
-          <h2 class="font-serif text-2xl uppercase tracking-wider">[Signature Categories Grid]</h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-3 group-hover:border-brand-gold transition">[Category Image 1]</div>
-            <div class="h-5 border border-cream-border flex items-center justify-center text-xs">[Category Title 1]</div>
-          </div>
-          <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-3 group-hover:border-brand-gold transition">[Category Image 2]</div>
-            <div class="h-5 border border-cream-border flex items-center justify-center text-xs">[Category Title 2]</div>
-          </div>
-          <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-3 group-hover:border-brand-gold transition">[Category Image 3]</div>
-            <div class="h-5 border border-cream-border flex items-center justify-center text-xs">[Category Title 3]</div>
-          </div>
-          <div onclick="navigateTo('collections')" class="cursor-pointer group">
-            <div class="wireframe-box aspect-[4/5] mb-3 group-hover:border-brand-gold transition">[Category Image 4]</div>
-            <div class="h-5 border border-cream-border flex items-center justify-center text-xs">[Category Title 4]</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Split Editorial Feature (Heritage / Craft) -->
-      <div class="bg-cream-surface border-y border-cream-border py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="wireframe-box h-96 bg-cream-bg">[Editorial Feature Image Placeholder]</div>
-          <div class="space-y-4">
-            <div class="h-4 w-32 border border-cream-border flex items-center px-2 text-[10px] uppercase">[Subheading Slot]</div>
-            <div class="h-10 w-3/4 border border-cream-border flex items-center px-3 font-serif text-lg">[Editorial Title Block]</div>
-            <div class="h-24 w-full border border-cream-border flex items-center justify-center text-xs">[Paragraph Copy Block Placeholder]</div>
-            <button onclick="navigateTo('heritage')" class="px-6 py-3 border border-brand-dark text-xs uppercase tracking-widest hover:bg-brand-dark hover:text-cream-bg transition">
-              [Explore Craft Page]
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dual Callout: Corporate B2B & Walk-In Boutiques -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="p-8 border border-cream-border bg-cream-surface flex flex-col justify-between h-80">
-            <div class="wireframe-box h-40 bg-cream-bg mb-4">[Corporate B2B Banner Image]</div>
-            <div class="flex items-center justify-between">
-              <span class="text-sm font-serif uppercase tracking-wider">[Corporate Gifting Block]</span>
-              <button onclick="navigateTo('corporate')" class="text-xs underline uppercase tracking-widest hover:text-brand-gold">[Open Page ->]</button>
+        <div class="relative rounded-sm overflow-hidden bg-brand-dark shadow-md">
+          <video autoplay muted loop playsinline class="w-full h-[520px] object-cover opacity-90">
+            <source src="gemini_generated_video_7eb39e4a.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/30 to-transparent flex flex-col justify-end p-8 sm:p-14 text-cream-bg text-center">
+            <h1 class="font-serif text-3xl sm:text-5xl uppercase tracking-wider mb-3">A Legacy of Levantine Taste. Reimagined in Luxury.</h1>
+            <p class="max-w-2xl mx-auto text-sm sm:text-base font-light text-cream-border mb-8">
+              Discover the authentic taste of Nafeeseh, where generations of oriental sweets craftsmanship meet modern elegance and the timeless art of generosity.
+            </p>
+            <div>
+              <button onclick="navigateTo('collections')" class="px-8 py-3.5 bg-brand-gold text-brand-dark font-semibold text-xs uppercase tracking-[0.2em] hover:bg-cream-bg transition shadow-lg">
+                Discover the Collections
+              </button>
             </div>
           </div>
-          <div class="p-8 border border-cream-border bg-cream-surface flex flex-col justify-between h-80">
-            <div class="wireframe-box h-40 bg-cream-bg mb-4">[Retail Walk-In Boutiques Image]</div>
+        </div>
+      </div>
+
+      <!-- Signature Categories Grid (4 Main Product Pillars) -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-cream-border">
+        <div class="text-center mb-12">
+          <div class="text-xs uppercase tracking-[0.25em] text-cream-muted mb-2">Artisanal Masterpieces</div>
+          <h2 class="font-serif text-3xl uppercase tracking-wider">Signature Categories</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div onclick="navigateTo('collections')" class="cursor-pointer group">
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Traditional Baklava Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Traditional Baklava</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1">Crisp flaky layers with pure ghee & pistachios</p>
+          </div>
+          <div onclick="navigateTo('collections')" class="cursor-pointer group">
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Artisanal Maamoul Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Artisanal Maamoul</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1">Hand-pressed semolina filled with dates & nuts</p>
+          </div>
+          <div onclick="navigateTo('collections')" class="cursor-pointer group">
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Signature Kunafa Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Signature Kunafa</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1">Melted Akkawi cheese & golden semolina crust</p>
+          </div>
+          <div onclick="navigateTo('collections')" class="cursor-pointer group">
+            <div class="wireframe-box aspect-[4/5] mb-4 group-hover:border-brand-gold transition shadow-sm">[Luxury Assortments Image]</div>
+            <h3 class="font-serif text-lg text-center tracking-wide uppercase group-hover:text-brand-gold transition">Luxury Assortments</h3>
+            <p class="text-[11px] text-cream-muted text-center mt-1">Curated gift boxes for memorable occasions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial Heritage Teaser Feature -->
+      <div class="bg-cream-surface border-y border-cream-border py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="wireframe-box h-[420px] bg-cream-bg shadow-inner">[Close-up of traditional baklava being layered and finished by hand]</div>
+          <div class="space-y-6">
+            <div class="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold">Our Heritage & Craftsmanship</div>
+            <h2 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider text-brand-dark">Rooted in Levantine Hospitality</h2>
+            <p class="text-sm sm:text-base text-cream-dark leading-relaxed font-light">
+              Rooted in the rich traditions of Levantine hospitality, Nafeeseh brings generations of authentic craftsmanship and timeless flavours to every creation. From carefully layered pastries to the finest ingredients and delicate finishing touches, every sweet tells a story of heritage, passion, and artistry.
+            </p>
+            <div>
+              <button onclick="navigateTo('heritage')" class="px-8 py-3.5 border border-brand-dark text-xs uppercase tracking-[0.2em] hover:bg-brand-dark hover:text-cream-bg transition">
+                Explore Our Craft
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dual Callout: Corporate Gifting & Boutiques -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-10 border border-cream-border bg-cream-surface flex flex-col justify-between h-96 shadow-sm">
+            <div class="wireframe-box h-48 bg-cream-bg mb-6">[Corporate Gifting Tier Visual]</div>
             <div class="flex items-center justify-between">
-              <span class="text-sm font-serif uppercase tracking-wider">[Boutique Locations Block]</span>
-              <button onclick="navigateTo('boutiques')" class="text-xs underline uppercase tracking-widest hover:text-brand-gold">[Open Page ->]</button>
+              <div>
+                <h3 class="font-serif text-xl uppercase tracking-wide">Corporate B2B Gifting</h3>
+                <p class="text-xs text-cream-muted mt-1">Customized executive packaging & bulk orders</p>
+              </div>
+              <button onclick="navigateTo('corporate')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">Explore</button>
+            </div>
+          </div>
+          <div class="p-10 border border-cream-border bg-cream-surface flex flex-col justify-between h-96 shadow-sm">
+            <div class="wireframe-box h-48 bg-cream-bg mb-6">[Walk-In Boutique Map Visual]</div>
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-serif text-xl uppercase tracking-wide">Walk-In Boutiques</h3>
+                <p class="text-xs text-cream-muted mt-1">Visit our branches across Amman & Jordan</p>
+              </div>
+              <button onclick="navigateTo('boutiques')" class="px-4 py-2 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">Locate</button>
             </div>
           </div>
         </div>
@@ -234,224 +259,347 @@
     </section>
 
     <!-- ==========================================
-         PAGE 2: COLLECTIONS / CATALOG PAGE (INNER)
+         PAGE 2: COLLECTIONS & PRODUCTS CATALOG PAGE
          ========================================== -->
     <section id="page-collections" class="page-view">
-      <!-- Inner Page Header Banner -->
       <div class="bg-cream-surface border-b border-cream-border py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Collections</div>
-          <h1 class="font-serif text-3xl uppercase tracking-wider">[Inner Page: Collections Header]</h1>
-        </div>
-      </div>
-
-      <!-- Filter Toolbar + 3-Column Product Grid -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <!-- Horizontal Filter Bar -->
-        <div class="flex flex-wrap items-center justify-between border-b border-cream-border pb-4 mb-8 gap-4">
-          <div class="flex space-x-3 text-xs uppercase tracking-wider">
-            <span class="px-3 py-1.5 bg-brand-dark text-cream-bg">[All Categories]</span>
-            <span class="px-3 py-1.5 border border-cream-border">[Filter Tab 1]</span>
-            <span class="px-3 py-1.5 border border-cream-border">[Filter Tab 2]</span>
-            <span class="px-3 py-1.5 border border-cream-border">[Filter Tab 3]</span>
-          </div>
-          <div class="text-xs text-cream-muted uppercase">[Sort Dropdown Placeholder]</div>
-        </div>
-
-        <!-- Catalog Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-          <!-- Card 2 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-          <!-- Card 3 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-          <!-- Card 4 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-          <!-- Card 5 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-          <!-- Card 6 -->
-          <div onclick="navigateTo('item-detail')" class="cursor-pointer border border-cream-border p-4 bg-cream-bg hover:border-brand-gold transition">
-            <div class="wireframe-box aspect-square mb-4">[Product Photo Slot]</div>
-            <div class="h-5 border border-cream-border mb-2 flex items-center px-2 text-xs">[Item Title Placeholder]</div>
-            <div class="h-4 w-1/2 border border-cream-border flex items-center px-2 text-[11px] text-cream-muted">[Weight / Packaging Spec]</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 3: INNER ITEM DETAIL VIEW (DEEP INNER)
-         ========================================== -->
-    <section id="page-item-detail" class="page-view">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <!-- Breadcrumb -->
-        <div class="text-xs uppercase tracking-widest text-cream-muted mb-8">
-          <button onclick="navigateTo('home')" class="hover:underline">Home</button> / 
-          <button onclick="navigateTo('collections')" class="hover:underline">Collections</button> / 
-          <span class="text-brand-dark">[Inner Item Specification Page]</span>
-        </div>
-
-        <!-- Two-Column Product Architecture -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <!-- Left: Gallery Structure -->
-          <div class="space-y-4">
-            <div class="wireframe-box aspect-square w-full">[Main High-Res Item Image Slot]</div>
-            <div class="grid grid-cols-4 gap-4">
-              <div class="wireframe-box aspect-square">[Thumb 1]</div>
-              <div class="wireframe-box aspect-square">[Thumb 2]</div>
-              <div class="wireframe-box aspect-square">[Thumb 3]</div>
-              <div class="wireframe-box aspect-square">[Thumb 4]</div>
-            </div>
-          </div>
-
-          <!-- Right: Box/Weight Tiers & Details -->
-          <div class="space-y-6">
-            <div class="h-8 w-2/3 border border-cream-border flex items-center px-3 font-serif text-xl">[Assortment / Box Name Slot]</div>
-            <div class="h-24 w-full border border-cream-border flex items-center justify-center text-xs">[Item Description & Tasting Notes Slot]</div>
-            
-            <!-- Size / Packaging Selector Skeleton -->
-            <div>
-              <div class="text-xs uppercase tracking-widest mb-2">[Packaging / Weight Tier Selector]</div>
-              <div class="grid grid-cols-3 gap-3">
-                <div class="h-10 border border-brand-dark flex items-center justify-center text-xs">[Size Tier 1]</div>
-                <div class="h-10 border border-cream-border flex items-center justify-center text-xs">[Size Tier 2]</div>
-                <div class="h-10 border border-cream-border flex items-center justify-center text-xs">[Size Tier 3]</div>
-              </div>
-            </div>
-
-            <!-- Action / Walk-In Availability Box -->
-            <div class="p-6 bg-cream-surface border border-cream-border space-y-3">
-              <div class="h-10 bg-brand-dark text-cream-bg flex items-center justify-center text-xs uppercase tracking-widest">[Primary Action / In-Store Availability CTA]</div>
-              <div class="h-8 border border-cream-border flex items-center justify-center text-xs">[Allergen & Ingredient Accordion Slot]</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 4: CORPORATE B2B GIFTING PAGE (INNER)
-         ========================================== -->
-    <section id="page-corporate" class="page-view">
-      <div class="bg-cream-surface border-b border-cream-border py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Corporate B2B</div>
-          <h1 class="font-serif text-3xl uppercase tracking-wider">[Corporate Gifting & B2B Tiers Page]</h1>
-        </div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        <!-- 3-Tier B2B Packaging Structure -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="border border-cream-border p-6 bg-cream-surface space-y-4">
-            <div class="wireframe-box h-48 bg-cream-bg">[Tier 1 Visual Slot]</div>
-            <div class="h-6 border border-cream-border flex items-center justify-center text-xs font-semibold uppercase">[B2B Tier 1: Executive]</div>
-            <div class="h-20 border border-cream-border flex items-center justify-center text-xs">[Tier Specs & Customization Options]</div>
-          </div>
-          <div class="border border-brand-gold p-6 bg-cream-surface space-y-4">
-            <div class="wireframe-box h-48 bg-cream-bg">[Tier 2 Visual Slot]</div>
-            <div class="h-6 border border-cream-border flex items-center justify-center text-xs font-semibold uppercase">[B2B Tier 2: Prestige]</div>
-            <div class="h-20 border border-cream-border flex items-center justify-center text-xs">[Tier Specs & Customization Options]</div>
-          </div>
-          <div class="border border-cream-border p-6 bg-cream-surface space-y-4">
-            <div class="wireframe-box h-48 bg-cream-bg">[Tier 3 Visual Slot]</div>
-            <div class="h-6 border border-cream-border flex items-center justify-center text-xs font-semibold uppercase">[B2B Tier 3: Bespoke / Bulk]</div>
-            <div class="h-20 border border-cream-border flex items-center justify-center text-xs">[Tier Specs & Customization Options]</div>
-          </div>
-        </div>
-
-        <!-- Corporate Inquiry Form Wireframe -->
-        <div class="max-w-2xl mx-auto border border-cream-border p-8 bg-cream-surface space-y-4">
-          <div class="h-6 border border-cream-border flex items-center justify-center font-serif uppercase">[Corporate B2B Inquiry Form Header]</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="h-10 bg-cream-bg border border-cream-border flex items-center px-3 text-xs text-cream-muted">[Company Name Input]</div>
-            <div class="h-10 bg-cream-bg border border-cream-border flex items-center px-3 text-xs text-cream-muted">[Contact Person Input]</div>
-          </div>
-          <div class="h-10 bg-cream-bg border border-cream-border flex items-center px-3 text-xs text-cream-muted">[Tier Selection & Estimated Quantity]</div>
-          <div class="h-24 bg-cream-bg border border-cream-border flex items-center px-3 text-xs text-cream-muted">[Message / Custom Branding Requirements]</div>
-          <div class="h-10 bg-brand-dark text-cream-bg flex items-center justify-center text-xs uppercase tracking-widest">[Submit Corporate Inquiry Button]</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         PAGE 5: WALK-IN BOUTIQUES / BRANCHES (INNER)
-         ========================================== -->
-    <section id="page-boutiques" class="page-view">
-      <div class="bg-cream-surface border-b border-cream-border py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Retail Walk-In Locations</div>
-          <h1 class="font-serif text-3xl uppercase tracking-wider">[Boutiques & Walk-In Branches Directory]</h1>
+          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">The Nafeeseh Collections</h1>
+          <p class="text-xs text-cream-muted mt-2">Select a category below to explore our authentic sweets and packaging options.</p>
         </div>
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Left: Branch List Cards -->
-          <div class="space-y-4">
-            <div class="p-5 border border-brand-dark bg-cream-surface space-y-2">
-              <div class="h-5 border border-cream-border flex items-center px-2 text-xs font-semibold">[Flagship Branch Name Slot]</div>
-              <div class="h-12 border border-cream-border flex items-center px-2 text-xs text-cream-muted">[Address, Opening Hours & Phone Slot]</div>
-              <div class="h-7 bg-brand-dark text-cream-bg flex items-center justify-center text-[11px] uppercase">[Get Directions CTA]</div>
+        <!-- Category Navigation Bar -->
+        <div class="flex flex-wrap items-center justify-center border-b border-cream-border pb-6 mb-12 gap-3">
+          <button onclick="filterCategory('all')" id="cat-btn-all" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider bg-brand-dark text-cream-bg font-medium transition">All Sweets</button>
+          <button onclick="filterCategory('hot')" id="cat-btn-hot" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات ساخنة (Hot Sweets)</button>
+          <button onclick="filterCategory('nuts')" id="cat-btn-nuts" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالمكسرات</button>
+          <button onclick="filterCategory('western')" id="cat-btn-western" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات غربية</button>
+          <button onclick="filterCategory('cheese')" id="cat-btn-cheese" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالجبنة</button>
+          <button onclick="filterCategory('light')" id="cat-btn-light" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات لايت</button>
+          <button onclick="filterCategory('dry')" id="cat-btn-dry" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">نواشف بأنواعها</button>
+          <button onclick="filterCategory('cream')" id="cat-btn-cream" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">حلويات عربية بالقشطة</button>
+          <button onclick="filterCategory('orders')" id="cat-btn-orders" class="cat-tab px-4 py-2 text-xs uppercase tracking-wider border border-cream-border bg-cream-surface hover:border-brand-gold transition font-medium">للتواصي (Custom Orders)</button>
+        </div>
+
+        <!-- Products Grid with Size/Weight Dropdown Selectors -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Product Card 1 (Hot Sweets) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="hot">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Kunafa Nabulsiya Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات ساخنة</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Signature Nabulsi Kunafa</h3>
+              <p class="text-xs text-cream-muted mt-1">Warm spun pastry with stretchy Akkawi cheese and syrup.</p>
             </div>
-            <div class="p-5 border border-cream-border bg-cream-surface space-y-2">
-              <div class="h-5 border border-cream-border flex items-center px-2 text-xs font-semibold">[Branch 2 Name Slot]</div>
-              <div class="h-12 border border-cream-border flex items-center px-2 text-xs text-cream-muted">[Address, Opening Hours & Phone Slot]</div>
-              <div class="h-7 border border-brand-dark flex items-center justify-center text-[11px] uppercase">[Get Directions CTA]</div>
-            </div>
-            <div class="p-5 border border-cream-border bg-cream-surface space-y-2">
-              <div class="h-5 border border-cream-border flex items-center px-2 text-xs font-semibold">[Branch 3 Name Slot]</div>
-              <div class="h-12 border border-cream-border flex items-center px-2 text-xs text-cream-muted">[Address, Opening Hours & Phone Slot]</div>
-              <div class="h-7 border border-brand-dark flex items-center justify-center text-[11px] uppercase">[Get Directions CTA]</div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
             </div>
           </div>
 
-          <!-- Right: Interactive Map Container Placeholder -->
+          <!-- Product Card 2 (Nuts Sweets) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="nuts">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Pistachio Baklava Assortment Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالمكسرات</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Royal Pistachio Baklava</h3>
+              <p class="text-xs text-cream-muted mt-1">Delicate filo layers packed with premium green pistachios.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 3 (Western Sweets) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="western">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Artisanal Petit Four Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات غربية</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Oriental-Fused Petit Four</h3>
+              <p class="text-xs text-cream-muted mt-1">Buttery biscuits dipped in Belgian chocolate & pistachio.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 4 (Cheese Sweets) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cheese">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Halawet el Jibn Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالجبنة</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Halawet El Jibn</h3>
+              <p class="text-xs text-cream-muted mt-1">Sweet cheese rolls filled with rich clotted cream (Ashta).</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 5 (Light Sweets) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="light">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Sugar-Free Maamoul Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات لايت</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Sugar-Free Date Maamoul</h3>
+              <p class="text-xs text-cream-muted mt-1">Lightly baked semolina filled with natural date paste.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 6 (Dry / Nawashif) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="dry">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Ka'ak & Barazik Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">نواشف بأنواعها</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Sesame Barazik & Ghuraybeh</h3>
+              <p class="text-xs text-cream-muted mt-1">Traditional crunchy biscuits crusted with toasted sesame & pistachios.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 7 (Cream / Ashta) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="cream">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Mafroukeh bil Ashta Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">حلويات عربية بالقشطة</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Mafroukeh Bil Ashta</h3>
+              <p class="text-xs text-cream-muted mt-1">Semolina butter crumble topped with fresh clotted cream and nuts.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>500g Box</option>
+                  <option>1kg Box</option>
+                  <option>Luxury Tin (1.5kg)</option>
+                </select>
+              </div>
+              <button onclick="alert('Redirecting to Walk-In Boutiques availability.')" class="w-full h-10 bg-brand-dark text-cream-bg text-xs uppercase tracking-widest hover:bg-brand-gold transition">
+                Available in All Branches
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Card 8 (Custom Orders / Tawasi) -->
+          <div class="product-card border border-cream-border p-5 bg-cream-surface flex flex-col justify-between shadow-sm" data-category="orders">
+            <div>
+              <div class="wireframe-box aspect-square mb-4">[Grand Wedding Tray Photo]</div>
+              <span class="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">للتواصي (Custom Orders)</span>
+              <h3 class="font-serif text-lg uppercase tracking-wide mt-1">Bespoke Celebration Trays</h3>
+              <p class="text-xs text-cream-muted mt-1">Custom arranged dessert platters for weddings, graduations & feasts.</p>
+            </div>
+            <div class="mt-6 space-y-3">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-cream-muted mb-1">Select Size / Weight:</label>
+                <select class="w-full h-10 bg-cream-bg border border-cream-border px-3 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+                  <option>Standard Tray (2kg)</option>
+                  <option>Grand Celebration Tray (4kg)</option>
+                  <option>Royal Tiered Display (6kg+)</option>
+                </select>
+              </div>
+              <button onclick="navigateTo('corporate')" class="w-full h-10 bg-brand-gold text-brand-dark text-xs uppercase tracking-widest font-semibold hover:bg-brand-dark hover:text-cream-bg transition">
+                Inquire For Custom Order
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 3: CORPORATE B2B GIFTING PAGE
+         ========================================== -->
+    <section id="page-corporate" class="page-view">
+      <div class="bg-cream-surface border-b border-cream-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Corporate Gifting</div>
+          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">Corporate & Bespoke Gifting</h1>
+          <p class="text-xs text-cream-muted mt-2">Elevate your corporate relations and celebrations with Nafeeseh's luxury packaging tiers.</p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="border border-cream-border p-6 bg-cream-surface space-y-4 shadow-sm">
+            <div class="wireframe-box h-48 bg-cream-bg">[Executive Gift Box Photo]</div>
+            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Executive Tier</h3>
+            <p class="text-xs text-cream-muted text-center">Curated assortment boxes featuring custom embossed sleeves with your company logo.</p>
+          </div>
+          <div class="border border-brand-gold p-6 bg-cream-surface space-y-4 shadow-sm relative">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-dark text-[10px] uppercase px-3 py-1 font-semibold tracking-widest">Most Popular</span>
+            <div class="wireframe-box h-48 bg-cream-bg">[Prestige Velvet Tin Photo]</div>
+            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Prestige Tier</h3>
+            <p class="text-xs text-cream-muted text-center">Luxury metallic and velvet gift tins filled with premium pistachios and gourmet sweets.</p>
+          </div>
+          <div class="border border-cream-border p-6 bg-cream-surface space-y-4 shadow-sm">
+            <div class="wireframe-box h-48 bg-cream-bg">[Bespoke Celebration Display Photo]</div>
+            <h3 class="font-serif text-xl uppercase tracking-wide text-center">Bespoke & Bulk Tier</h3>
+            <p class="text-xs text-cream-muted text-center">Large-scale event catering and personalized gift hampers for holiday seasons.</p>
+          </div>
+        </div>
+
+        <!-- Inquiry Form -->
+        <div class="max-w-2xl mx-auto border border-cream-border p-8 sm:p-12 bg-cream-surface space-y-6 shadow-sm">
+          <div class="text-center">
+            <h3 class="font-serif text-2xl uppercase tracking-wider">Corporate Inquiry Form</h3>
+            <p class="text-xs text-cream-muted mt-1">Fill out your details and our corporate sales team will contact you promptly.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="text" placeholder="Company Name" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
+            <input type="text" placeholder="Contact Person" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="email" placeholder="Email Address" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
+            <input type="text" placeholder="Phone / WhatsApp Number" class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs focus:outline-none focus:border-brand-gold">
+          </div>
+          <select class="w-full h-11 bg-cream-bg border border-cream-border px-4 text-xs uppercase text-brand-dark focus:outline-none focus:border-brand-gold">
+            <option>Select Gifting Tier (Executive / Prestige / Bespoke)</option>
+            <option>Executive Tier</option>
+            <option>Prestige Tier</option>
+            <option>Bespoke / Bulk Tier</option>
+          </select>
+          <textarea rows="4" placeholder="Estimated Quantity & Custom Branding Requirements..." class="w-full bg-cream-bg border border-cream-border p-4 text-xs focus:outline-none focus:border-brand-gold"></textarea>
+          <button onclick="alert('Thank you! Your corporate inquiry has been submitted successfully.')" class="w-full h-12 bg-brand-dark text-cream-bg text-xs uppercase tracking-[0.2em] hover:bg-brand-gold transition shadow-md">
+            Submit Corporate Inquiry
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 4: WALK-IN BOUTIQUES DIRECTORY
+         ========================================== -->
+    <section id="page-boutiques" class="page-view">
+      <div class="bg-cream-surface border-b border-cream-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Retail Locations</div>
+          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">Walk-In Boutiques</h1>
+          <p class="text-xs text-cream-muted mt-2">Visit our flagship stores across Amman to experience fresh oriental sweets daily.</p>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="space-y-4">
+            <div class="p-6 border border-brand-dark bg-cream-surface space-y-3 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold uppercase">Flagship Sweifieh Branch</h3>
+              <p class="text-xs text-cream-muted leading-relaxed">Wasfi Al-Tall Street, Amman, Jordan<br>Open Daily: 9:00 AM – 12:00 AM<br>Tel: +962 6 5508550</p>
+              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 bg-brand-dark text-cream-bg text-[11px] uppercase tracking-widest hover:bg-brand-gold transition">Get Directions</a>
+            </div>
+            <div class="p-6 border border-cream-border bg-cream-surface space-y-3 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold uppercase">Abdoun Boutique</h3>
+              <p class="text-xs text-cream-muted leading-relaxed">Beirut Street, Amman, Jordan<br>Open Daily: 10:00 AM – 11:00 PM<br>Tel: +962 6 5508551</p>
+              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 border border-brand-dark text-brand-dark text-[11px] uppercase tracking-widest hover:bg-brand-dark hover:text-cream-bg transition">Get Directions</a>
+            </div>
+            <div class="p-6 border border-cream-border bg-cream-surface space-y-3 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold uppercase">Khalda Branch</h3>
+              <p class="text-xs text-cream-muted leading-relaxed">Medina Street Junction, Amman, Jordan<br>Open Daily: 9:00 AM – 11:30 PM<br>Tel: +962 6 5508552</p>
+              <a href="https://maps.google.com" target="_blank" class="block w-full text-center py-2.5 border border-brand-dark text-brand-dark text-[11px] uppercase tracking-widest hover:bg-brand-dark hover:text-cream-bg transition">Get Directions</a>
+            </div>
+          </div>
           <div class="lg:col-span-2">
-            <div class="wireframe-box h-[460px] w-full">[Interactive Google Map Embed Placeholder]</div>
+            <div class="wireframe-box h-[480px] w-full shadow-sm">[Interactive Google Map Embed Showing Nafeeseh Branches in Amman]</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================
-         PAGE 6: OUR CRAFT & HERITAGE PAGE (INNER)
+         PAGE 5: OUR CRAFT & HERITAGE PAGE
          ========================================== -->
     <section id="page-heritage" class="page-view">
       <div class="bg-cream-surface border-b border-cream-border py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div class="text-xs uppercase tracking-widest text-cream-muted mb-2">Home / Our Craft</div>
-          <h1 class="font-serif text-3xl uppercase tracking-wider">[Heritage, Ingredients & Craftsmanship Page]</h1>
+          <h1 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider">The Art of Levantine Confectionery</h1>
+          <p class="text-xs text-cream-muted mt-2">Discover the passion, pure ingredients, and timeless traditions behind Nafeeseh.</p>
         </div>
       </div>
 
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-        <div class="wireframe-box h-80 w-full">[Wide Craftsmanship / Kitchen Banner Slot]</div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="wireframe-box h-48">[Pillar 1: Ingredients]</div>
-          <div class="wireframe-box h-48">[Pillar 2: Mastery]</div>
-          <div class="wireframe-box h-48">[Pillar 3: Presentation]</div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <div class="wireframe-box h-96 w-full shadow-sm">[Wide Photography of Nafeeseh Master Bakers at Work]</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
+            <h3 class="font-serif text-xl uppercase">Pure Ingredients</h3>
+            <p class="text-xs text-cream-muted leading-relaxed">We source 100% pure golden ghee, premium Syrian pistachios, and fresh local dairy daily.</p>
+          </div>
+          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
+            <h3 class="font-serif text-xl uppercase">Masterful Craft</h3>
+            <p class="text-xs text-cream-muted leading-relaxed">Generations of master pastry chefs passing down secret techniques in dough layering and syrup balance.</p>
+          </div>
+          <div class="p-6 border border-cream-border bg-cream-surface space-y-3 text-center shadow-sm">
+            <h3 class="font-serif text-xl uppercase">Timeless Generosity</h3>
+            <p class="text-xs text-cream-muted leading-relaxed">Every box is packed with warmth and hospitality, designed to make family gatherings unforgettable.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -459,79 +607,72 @@
   </main>
 
   <!-- ==========================================
-       4. GLOBAL LUXURY FOOTER STRUCTURE
+       4. GLOBAL LUXURY FOOTER
        ========================================== -->
-  <footer class="bg-cream-surface border-t border-cream-border mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+  <footer class="bg-cream-surface border-t border-cream-border mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
         
-        <!-- Column 1: Brand Identity -->
-        <div class="space-y-3">
-          <div class="font-serif text-2xl tracking-widest uppercase font-semibold">NAFEESEH</div>
-          <div class="h-16 border border-cream-border flex items-center justify-center text-xs text-cream-muted px-2">
-            [Short Brand Identity Statement Slot]
-          </div>
+        <div class="space-y-4">
+          <img src="Logo Nafeeseh.png" alt="Nafeeseh Logo" class="h-10 object-contain" onerror="this.style.display='none';">
+          <p class="text-xs text-cream-muted leading-relaxed">
+            Original Oriental Taste & Authentic Levantine Sweets craftsmanship reimagined in luxury.
+          </p>
         </div>
 
-        <!-- Column 2: Quick Navigation -->
-        <div class="space-y-2 text-xs uppercase tracking-wider">
-          <div class="font-semibold text-brand-dark mb-3">[Navigation Column 1]</div>
-          <button onclick="navigateTo('collections')" class="block hover:text-brand-gold">Collections</button>
-          <button onclick="navigateTo('heritage')" class="block hover:text-brand-gold">Our Craft</button>
-          <button onclick="navigateTo('item-detail')" class="block hover:text-brand-gold">Packaging Specs</button>
+        <div class="space-y-3 text-xs uppercase tracking-wider">
+          <div class="font-semibold text-brand-dark mb-4">Quick Links</div>
+          <button onclick="navigateTo('collections')" class="block hover:text-brand-gold transition">Collections</button>
+          <button onclick="navigateTo('corporate')" class="block hover:text-brand-gold transition">Corporate Gifting</button>
+          <button onclick="navigateTo('boutiques')" class="block hover:text-brand-gold transition">Walk-In Boutiques</button>
+          <button onclick="navigateTo('heritage')" class="block hover:text-brand-gold transition">Our Craft</button>
         </div>
 
-        <!-- Column 3: Services & Retail -->
-        <div class="space-y-2 text-xs uppercase tracking-wider">
-          <div class="font-semibold text-brand-dark mb-3">[Navigation Column 2]</div>
-          <button onclick="navigateTo('corporate')" class="block hover:text-brand-gold">Corporate B2B Gifting</button>
-          <button onclick="navigateTo('boutiques')" class="block hover:text-brand-gold">Walk-In Boutiques</button>
-          <span class="block text-cream-muted">[Contact / Customer Care]</span>
+        <div class="space-y-3 text-xs uppercase tracking-wider">
+          <div class="font-semibold text-brand-dark mb-4">Customer Care</div>
+          <a href="tel:0096265508550" class="block hover:text-brand-gold transition">Call Center: 0096265508550</a>
+          <span class="block text-cream-muted">Amman, Jordan</span>
+          <span class="block text-cream-muted">support@nafeeseh.com</span>
         </div>
 
-        <!-- Column 4: Social Channels -->
-        <div class="space-y-3">
-          <div class="text-xs uppercase tracking-wider font-semibold">[Social Channels Bar]</div>
+        <div class="space-y-4">
+          <div class="text-xs uppercase tracking-wider font-semibold text-brand-dark">Connect With Us</div>
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="h-8 border border-cream-border flex items-center justify-center">[Instagram]</div>
-            <div class="h-8 border border-cream-border flex items-center justify-center">[Snapchat]</div>
-            <div class="h-8 border border-cream-border flex items-center justify-center">[Facebook]</div>
-            <div class="h-8 border border-cream-border flex items-center justify-center">[WhatsApp]</div>
+            <a href="https://www.facebook.com/Nafeeseh" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">Facebook</a>
+            <a href="https://www.instagram.com/nafeeseh.jo/" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">Instagram</a>
+            <a href="https://www.youtube.com/channel/UCLiuCdCsAtoU8_jKv71Gbtw/featured" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">YouTube</a>
+            <a href="https://www.linkedin.com/showcase/nafeeseh-sweets/?viewAsMember=true" target="_blank" class="h-9 border border-cream-border flex items-center justify-center hover:border-brand-gold transition">LinkedIn</a>
           </div>
         </div>
 
       </div>
 
-      <!-- Bottom Copyright Bar -->
       <div class="border-t border-cream-border pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-muted">
-        <div>© <span id="year"></span> Nafeeseh Sweets. [Copyright Bar Placeholder]</div>
-        <div class="flex space-x-4 mt-2 sm:mt-0">
-          <span>[Privacy Policy]</span>
-          <span>[Terms of Service]</span>
+        <div>© <span id="year"></span> Nafeeseh Sweets. All Rights Reserved.</div>
+        <div class="flex space-x-6 mt-4 sm:mt-0">
+          <span class="cursor-pointer hover:underline">Privacy Policy</span>
+          <span class="cursor-pointer hover:underline">Terms of Service</span>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- ==========================================
-       5. JAVASCRIPT ROUTER FOR INNER/OUTER PAGES
+       5. JAVASCRIPT ROUTER & CATEGORY FILTER
        ========================================== -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function navigateTo(pageId) {
-      // Hide all pages
       document.querySelectorAll('.page-view').forEach(page => {
         page.classList.remove('active');
       });
 
-      // Show selected page
       const targetPage = document.getElementById('page-' + pageId);
       if (targetPage) {
         targetPage.classList.add('active');
       }
 
-      // Update active toolbar button styling
       document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.getAttribute('data-target') === pageId) {
           btn.classList.add('text-brand-gold', 'border-b-2', 'border-brand-gold');
@@ -540,13 +681,34 @@
         }
       });
 
-      // Scroll to top on page switch
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
+    }
+
+    function filterCategory(cat) {
+      // Highlight active tab
+      document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.classList.remove('bg-brand-dark', 'text-cream-bg');
+        tab.classList.add('bg-cream-surface', 'border', 'border-cream-border');
+      });
+      const activeBtn = document.getElementById('cat-btn-' + cat);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-cream-surface', 'border', 'border-cream-border');
+        activeBtn.classList.add('bg-brand-dark', 'text-cream-bg');
+      }
+
+      // Filter product cards
+      document.querySelectorAll('.product-card').forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
   </script>
 
